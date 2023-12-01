@@ -1,0 +1,81 @@
+.signUp-page-container{
+    display: flex;
+    justify-content: flex-start;
+   align-items: center;
+    
+
+}
+.signUp-page-container button{
+   border: 1px solid rgb(196, 208, 215);
+   border-radius: 30px;
+   width: 70%;
+   height: 50px;
+   font-family: inherit;
+   background-color: transparent;
+}
+@media screen and (max-width: 400px) {
+    .signUp-page-container button{
+        border: 1px solid rgb(196, 208, 215);
+        border-radius: 30px;
+        
+        width: 70vw;
+        height: 50px;
+        font-family: inherit;
+        background-color: transparent;
+     }
+}
+.signUp-page-container button:hover{
+    background-color: grey;
+ }
+.label-container{
+    display: flex;
+    flex-direction: column;
+  
+    width: 300px;
+    font-weight: bold;
+}
+.label-container input{
+    width: 100%; 
+  max-width: 300px;
+    padding: 5px;
+    margin: 5px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    background-color: rgb(218, 232, 241);
+    height: 40px
+}
+@media screen and (max-width: 400px) {
+    .label-container input {
+        width: 80vw;
+        max-width: none; 
+      }
+}
+.image-signupPage-container {
+ 
+display: flex;
+justify-content: flex-start;
+margin-right: 30px;
+}
+.image-signupPage-container img{
+    width: 30vw;
+height: 100vh;
+
+}
+@media screen and (max-width: 1000px) {
+    .image-signupPage-container {
+ 
+        display: none;
+        }
+        .image-signupPage-container img{
+           
+        display: none;
+        
+        }
+        .signUp-page-container{
+            display: flex;
+            
+          justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+}

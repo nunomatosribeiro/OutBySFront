@@ -1,0 +1,33 @@
+#tours-section01{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    transform: translate(0, -15%);
+    
+    }
+
+.hero-Image-tours{
+    background-image:  url("../public/section01Image.jpg");
+     position: relative;
+    top: 0;
+    left: 0; 
+    object-fit: cover;
+    pointer-events: none;
+    background-position: center ;
+    background-size: cover;
+    height: 700px;
+    }
+
+.img-wrapper{
+    overflow: hidden;
+    
+    }
+.img-wrapper img:hover {
+        transform: scale(1.25);
+        transition: transform 0.8s ease;
+      }
+     .horizontal-scroll-container{
+        display: flex;
+        overflow-x: auto;
+     }

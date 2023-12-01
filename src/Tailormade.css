@@ -1,0 +1,105 @@
+/*section 1*/
+.tailormade-container1{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+   
+
+}
+.section1-tailormade-page{
+    
+    background-color: rgba(14, 108, 137, 0.6);
+height: auto !important;
+}
+
+.container-section1-tailormade-page-intro{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    
+}
+.text-section1-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 45vw;
+    gap:2em;
+    padding: 5px;
+}
+.container-section1-tailormade-page-intro img{
+    width: 50vw;
+    max-height: 600px;
+}
+@media screen and (max-width: 600px) {
+  .container-section1-tailormade-page-intro img{
+    width: 100vw;
+    max-height: 600px;
+}
+.container-section1-tailormade-page-intro{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  
+}
+.text-section1-container{
+  width: 80vw;
+  
+  padding: 5px;
+}
+}
+
+.container-section1-tailormade-page-intro p{
+   font-family: GT Eesti,fallback for GT Eesti,sans-serif;
+   padding: 5px;
+}
+
+/*Section 2 */
+.section2-tailormade-page {
+    
+  align-items: center;
+  
+  }
+  
+  .container-section2-images {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  align-items: center;
+  }
+  
+  .whatsapp-container{
+    display: flex;
+   flex-wrap: wrap;
+    justify-content: space-between;
+ 
+    width: 80vw
+  }
+  .whatsapp-text-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+  }
+  .container-section2-images-img {
+    max-width: 100%; /* Ensure the image doesn't exceed the container width */
+    height: auto; /* Maintain the aspect ratio */
+    padding: 10px;   
+}
+  
+  @media screen and (max-width: 500px) {
+    .container-section2-images-img {
+      width: 100%; /* Make the images take the full width of the container */
+      min-height: auto !important; /* Allow the image to exceed its natural size */
+      padding: 10px !important;; 
+    }
+  }
+
+/*section3*/
+.section3-tailormade-page{
+    background-color: rgba(14, 108, 137, 0.6);
+    width: 100%;
+    height: 800px;
+    
+    }
+    

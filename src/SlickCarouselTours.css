@@ -1,0 +1,42 @@
+.slick-carousel-tours-mainpage-container {
+    width: 95vw;
+    
+}
+
+.slick-arrow.slick-prev {
+    background-color: transparent;
+    z-index: 1;
+}
+
+.slick-arrow.slick-next {
+    background-color: transparent;
+}
+
+.slick-arrow.slick-next::before {
+    font-size: 30px;
+    color: grey;
+}
+
+.slick-arrow.slick-prev::before {
+    font-size: 30px;
+    color: grey;
+}
+.image-text-slick-container {
+    width: 100%;
+    overflow: hidden; /* Ensure consistent height even if content overflows */
+}
+.image-text-slick-container2 {
+    width: 100%;
+    height: 200px;
+    overflow: hidden; /* Ensure consistent height even if content overflows */
+}
+.image-text-slick-container2 img {
+    width: 100% ;
+    height: 100%  ;
+    object-fit: cover; /* Maintain image aspect ratio and cover the container */
+
+
+}
+.card:hover{
+    box-shadow: 0px 1px 5px 1px rgb(184, 182, 182);
+}

@@ -1,0 +1,77 @@
+.footer-content{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    
+background-color: rgb(19, 19, 61);
+min-height: 400px;
+}
+.footer-wo-Bottom{
+     display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  
+  }
+.footer-section{
+    color: white;
+    margin-bottom: 20px;
+}
+.social-icons {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+  .social-icons a {
+    font-size: 32px;
+    margin: 0 8px;
+    color: white;
+
+}
+.facebook-icon:hover {
+    color: rgb(34, 34, 172);
+}
+.twitter-icon:hover {
+    color: rgb(81, 188, 223);
+}
+.instagram-icon:hover {
+    color: rgb(184, 70, 39);
+}
+.footer-section-ul{
+    list-style: none;
+}
+.footer-section-ul li {
+    margin-bottom: 8px; /* Adjust spacing between list items */
+  }
+  .footer-section-ul li a {
+    text-decoration: none; 
+    color: white;
+    
+  }
+  .footer-section-ul :hover{
+    text-decoration: none; 
+    color: grey;
+    
+  }
+  .footer-bottom{
+    color: white;
+    width: 50%;
+  text-align: center;
+ 
+  }
+  .whatsapp-icon {
+    background-color: white;
+   
+   padding: 8px;
+    border-radius: 15px;
+    border-style: solid;
+    border-color: green;
+    color: green;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+    
+  }
+  .whatsapp-icon:hover {
+    background-color: #0d5b1f; /* Darker green on hover */
+    color: white
+  }
+  

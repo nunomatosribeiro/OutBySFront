@@ -1,0 +1,116 @@
+ .page-details-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+.container1{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 80vw;
+    
+    padding-left: 50px;
+    padding-right: 50px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.title-page-details h1{
+padding: 5px;
+}
+.description-page-details{
+    padding: 5px;
+    width: 90%;
+}
+.info-page-details h3{
+  display: flex;
+  flex-direction: column;
+  padding: 5px;
+}
+.info-page-details p{
+  padding: 5px;
+}
+.included-page-details{
+  display: flex;
+flex-direction: column;
+padding: 5px;
+
+}
+.included-page-details ul{
+  padding: 5px;
+  list-style-type: none;
+}
+.image-gallery-description{
+    display: none;
+}
+.image-gallery-icon.image-gallery-play-button{
+display: none;
+}
+.image-gallery-image{
+  min-width: 50vw;
+  height: 45vh;
+  overflow: hidden;
+  border-radius: 8px;
+  
+}
+.image-gallery-thumbnail-image{
+  border-radius: 10px;
+  height: 60px;
+}
+.container-pageDetails-price-text{
+display: flex;
+justify-content: space-between;
+}
+.container-price{
+  border: 1px solid grey;
+  border-radius: 4px;
+ 
+  font-size: 2rem;
+  padding: 5px;
+}
+.container-price span{
+  
+  color: rgb(61, 61, 61);
+}
+.container-price p{
+  padding-top: 15px;
+  font-size: 0.8rem;
+  color: rgb(61, 61, 61);
+}
+@media screen and (min-width: 761px) and (max-width: 1048px) {
+  .container-price{
+    border: 1px solid grey;
+    border-radius: 4px;
+    width: 20vw;
+    height: 20vh;
+    font-size: 1.5rem;
+    padding: 1px;
+  }
+  .container-price span{
+    font-size: 1rem;
+    color: rgb(61, 61, 61);
+  }
+  .container-price p{
+    padding-top: 10px;
+    font-size: 0.7rem;
+    color: rgb(61, 61, 61);
+  }
+}
+@media screen and (max-width: 760px) {
+  .container-price {
+      font-size: 1.5rem;
+      border: none;
+width: 20vw;
+  }
+  .container-price span{
+    font-size: 1rem;
+    color: rgb(61, 61, 61);
+  }
+  .container-price p{
+    padding-top: 10px;
+    font-size: 0.7rem;
+    color: rgb(61, 61, 61);
+  }
+}

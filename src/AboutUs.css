@@ -1,0 +1,31 @@
+#section01{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    transform: translate(0, -15%);
+    }
+    .hero-Image{
+        background-image:  url("../public/section01Image.jpg");
+         position: relative;
+            top: 0;
+            left: 0;
+            
+           object-fit: cover;
+            pointer-events: none;
+            background-position: center ;
+            background-size: cover;
+            height: 700px;
+        }
+        .hero-Text{
+            text-align: center;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            }
+            .hero-Text h1{
+            font-size: 3rem;
+            text-align: center;
+            }
