@@ -14,8 +14,11 @@ import {
     faLanguage
 } from '@fortawesome/free-solid-svg-icons';
 import "react-image-gallery/styles/css/image-gallery.css";
-import '../PageDetails.css'
+import '../Pagedetails.css'
 import PageDetailsImages from '../components/PageDetailsImages'
+import ReserveNow from '../components/ReserveNow'
+import ReviewPage from '../components/Reviews'
+import AvgReviewComponent from '../components/AvgReviews'
 
 export default function PageDetails() {
     const { postId } = useParams();
@@ -26,7 +29,7 @@ export default function PageDetails() {
   }, [])
 const fetchPostData = async () => {
 try {
-    const response = await axios.get(`${apiBaseUrl}/posts/pagedetails/${postId}`)
+    const response = await axios.get(`${apiBaseUrl}/posts/details/${postId}`)
     const post = response.data;
     console.log('Ver aqui info dos detalhes do post', post);
     setPosts(post);
@@ -43,24 +46,21 @@ height="80"
 width="80" 
 radius="9"
 color="#4fa94d" 
-ariaLabel="three-dots-loading"
-wrapperStyle={{}}
-wrapperClassName=""
-visible={true}
+aria-label="three-dots-loading"
+visible="true"
  />
   }
   return (
     <div className='page-details-container'>
     
-<div className='container1'>
     <section className='section1-gallery-page-details'>
       <PageDetailsImages posts={posts} /> 
     </section>
-    <div className='container-pageDetails-price-text'>
-    <div>
+    
     <section className='section2-title-page-details'>
     <div className='title-page-details'>
-    <h1> {posts.title}</h1>
+    <h1><strong> {posts.title}</strong></h1>
+    <AvgReviewComponent />
     </div>
 </section>
 
@@ -72,7 +72,7 @@ visible={true}
 
 <section className='section4-about-page-details'>
     <div className='info-page-details'>
-    <h3>About this {posts.category === 'Tours' ? 'Tour' : posts.category}
+    <h3><strong>About this {posts.category === 'Tours' ? 'Tour' : posts.category}</strong>
 </h3>
     {posts.info.map((post, index)=>(
         <div key={index}>
@@ -88,7 +88,7 @@ visible={true}
 
 <section className='section5-included-page-details'>
     <div className='included-page-details'>
-    <h4>Includes</h4>
+    <h4><strong>Includes</strong></h4>
     <div >
         {posts.included.map((includedItem, index)=>(
         <div key={index}>
@@ -113,24 +113,28 @@ visible={true}
         </div>
 </section>
 
-<section className='section6-reviews-page-details'>
-<div>
-    <h3>Reviews</h3>
-    <div>{posts.reviews}</div>
-</div>
-</section>
-</div>
 <section className='section7-price-page-details'>
 <div className='container-price'>
-   <span> From</span>
-<br/>€{posts.price} per person
-<br/>
+   <p> From</p>
+€{posts.price} per person
+
 
 <p> Reserve now & pay later to book your spot and pay nothing today</p>
 </div>
+<div className='container-form-magicButton'>
+    <ReserveNow />
+</div>
 </section>
+
+
+<section className='section6-reviews-page-details'>
+<div className='container-ReviewPageComponent'>
+    <h3>Reviews</h3>
+    {/* <div>{posts.reviews}</div> */} {/* its throwing an error*/}
+    <ReviewPage />
 </div>
-</div>
+</section>
+
     </div>
   )
 }

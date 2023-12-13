@@ -6,27 +6,27 @@ import ActivitiesCarousel from "../components/Carousel";
 import FoodCarousel from "../components/Food-carousel";
  import GridMainPage from "../components/GridTours";
 import GridFood from "../components/GridFood"; 
+import FormTailormade from "../components/FormTailormade";
  
-const MainPage = () => {
+const MainPage = ({ isOpen }) => {
  
 
 
 
 return (
-      <div>
-
+      <div className={isOpen ? "mainpage-container-blur" : 'mainpage-container'}>
 
 <section id="section01">            
 <div className="hero-Image">
 <div className="hero-Text">
 <h1>Welcome to OutByS</h1>
-<h4>Live the city as a local</h4>
-<h4>Crafting Unforgettable Journeys</h4>
+<p>Live the city as a local</p>
+<p>Talk with us, we will get the rest!</p>
 </div>
 </div>
-<div>
+
 <Tab />
-</div>
+
 </section>
 
   
@@ -62,7 +62,7 @@ we will plan everything for you. Just tell us what you like! </p>
 <h1>Eat like a local!</h1>
 <p>The rich gastronomy will make your mouth watering.<br/>
 Traditional cuisine or author, you will be pleased with the gastronomic choices!</p>
-<Link to={'/Food'}><button>Learn more</button></Link>
+<Link to={'/posts/Food'}><button>Learn more</button></Link>
 </div>
 </div>
 <div className="foodCarousel-container">
@@ -82,25 +82,30 @@ Traditional cuisine or author, you will be pleased with the gastronomic choices!
 going for a boat ride along the river,<br />
 we`ve got something to make you feel happy!<br/>
 </p>
-<Link to={'/Activities'}><button>Learn more</button></Link>
+<Link to={'/posts/Activities'}><button>Learn more</button></Link>
 </div>
 </div>
 </section>
 
-<section className="section05" id='section05'>
+<section  id='section05'>
 <div className='tours-container'>
- <div >
-       <GridMainPage />
-</div>
-  
-<div className='text-container-tours'>
+ <div className='text-container-tours'>
 <h1>Unforgettable sights, stunning nature and striking monuments</h1>
-<p>Whether you feel like learning more about Porto, <br/>
+<p>Whether you feel like learning more about Porto, 
 going for a trip to the Douro Valley or to a nearby city<br/>
 you can count on us for a remarkable experience! </p>
-<Link to={'/Tours'}><button>Learn more</button></Link>
+<Link to={'/posts/Tours'}><button>Learn more</button></Link>
 </div>
+<div className="grid-tours-mainpage" >
+<GridMainPage />
 </div>
+  
+
+</div>
+</section>
+<section className="section-TailormadeForm">
+<h1>What it would be a remarkable journey for you?</h1>
+<FormTailormade />
 </section>
 </div>
 )

@@ -3,12 +3,12 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-   
-
+   color: rgb(82, 82, 82);
+ 
 }
 .section1-tailormade-page{
     
-    background-color: rgba(14, 108, 137, 0.6);
+    background-color: #d4e3f3;;
 height: auto !important;
 }
 
@@ -22,6 +22,7 @@ height: auto !important;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
     width: 45vw;
     gap:2em;
     padding: 5px;
@@ -49,13 +50,16 @@ height: auto !important;
 }
 
 .container-section1-tailormade-page-intro p{
-   font-family: GT Eesti,fallback for GT Eesti,sans-serif;
+   
    padding: 5px;
 }
 
 /*Section 2 */
 .section2-tailormade-page {
-    
+    height: 1000px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   align-items: center;
   
   }
@@ -86,7 +90,13 @@ height: auto !important;
     height: auto; /* Maintain the aspect ratio */
     padding: 10px;   
 }
+  .tailormade-form-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   
+  }
   @media screen and (max-width: 500px) {
     .container-section2-images-img {
       width: 100%; /* Make the images take the full width of the container */

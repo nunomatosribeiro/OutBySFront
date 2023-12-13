@@ -1,3 +1,6 @@
+.allPostByCategory-page{
+    padding: 10px;
+}
 #tours-section01{
     position: relative;
     display: flex;
@@ -30,4 +33,7 @@
      .horizontal-scroll-container{
         display: flex;
         overflow-x: auto;
+     }
+     #tours-section02{
+        padding: 10px;
      }

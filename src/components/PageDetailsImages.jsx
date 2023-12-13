@@ -13,20 +13,10 @@ const images =Array.isArray(posts.allMedia)
   description: `Image ${index + 1}`,
 })) : [];
 
-const settings = {
-  dots: false,
-  infinite: false,
-  speed: 500,
-  slidesToShow: 1,
-  slidesToScroll: 1,
-};
+
 
   return (
-    <div className='page-details-container'>
-    
- 
-<div className='container2'>
-    <section className='section1-gallery-page-details'>
+    <div >
     
         {images.length > 0 ? (
           <ImageGallery items={images} />
@@ -35,8 +25,8 @@ const settings = {
         )}
       
       
-    </section>
-    </div>
+    
+   
    
     </div>
     )

@@ -2,9 +2,10 @@ import React from 'react';
 import { FaFacebook, FaTwitter, FaInstagram, FaHeart  } from 'react-icons/fa';
 import '../Footer.css'
 import WhatsAppButton from './WhatsApp';
-const Footer = () => {
+const Footer = ({ isOpen }) => {
     return ( 
-       
+      <div>
+       {isOpen ? '' : (
         <footer className="footer">
         <div className="footer-content">
             <div className='footer-wo-Bottom'>
@@ -41,7 +42,8 @@ const Footer = () => {
         </div>
         </div>
       
-      </footer>
+      </footer>)}
+      </div>
      );
 }
  

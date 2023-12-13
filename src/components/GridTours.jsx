@@ -46,7 +46,7 @@ function GridMainPage () {
     setFavorites(newFavorites);
     console.log(index)
   };
-  const settings = {
+  const settings1 = {
     dots: false,
     infinite: true,
     speed: 500,
@@ -57,7 +57,7 @@ function GridMainPage () {
         breakpoint: 768,
        
         settings: {
-          slidesToShow: 4,
+          slidesToShow: 2,
           slidesToScroll: 1,
           
         },
@@ -65,7 +65,7 @@ function GridMainPage () {
       {
         breakpoint: 480,
         settings: {
-          slidesToShow: 2,
+          slidesToShow: 1,
           slidesToScroll: 1,
         },
       },
@@ -77,11 +77,11 @@ function GridMainPage () {
     <div className='slick-carousel-tours-mainpage-container' >
       
     
-      <Slider {...settings}>
+      <Slider {...settings1}>
       {posts.map((post, index) => ( 
           <div className='image-text-slick-container' key={post.title} >
             <Card style={{margin: '8px', borderRadius: '4px'}}>
-             <Link to={`/posts/details/${posts._id}`}>
+             <Link to={`/posts/details/${post._id}`}>
               <div className='image-text-slick-container2' >
               <CardMedia 
               component="img" 
@@ -109,7 +109,7 @@ function GridMainPage () {
           aria-label="AddToFavorites"
           className='favorites'
                onClick={() => handleFavoriteClick(index)} 
-               style={{ color: favorites[index] ? 'red' : 'inherit', backgroundColor: 'transparent' }} 
+               style={{ border:'none', color: favorites[index] ? 'red' : 'inherit', backgroundColor: 'transparent' }} 
           >
           <FavoriteIcon />
         </IconButton>

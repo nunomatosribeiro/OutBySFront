@@ -42,7 +42,7 @@ const AllPostsByCategory = () => {
 
 
   return (
-    <div>
+    <div >
         <section id="tours-section01">
 <div className="hero-Image-tours">
 

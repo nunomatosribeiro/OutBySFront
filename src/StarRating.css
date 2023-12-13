@@ -1,0 +1,33 @@
+/* .review-container-page{
+  width: 70vw;
+}
+
+.reviews-container{
+  max-width: 70vw;
+}
+
+@media screen and (max-width: 480px) {
+  .review-container-page{
+    width: 60vw;
+  }
+  .reviews-container{
+    width: 50vw;
+  
+  
+  }
+}
+.dv-star-rating {
+  font-size: 32px !important;
+   
+}
+.dv-star-rating-star.dv-star-rating-empty-star:hover i{
+  color: orange;
+ 
+}
+
+.slick-track{
+width: 100vw ;
+}
+.rating-component{
+  font-size: 12px;
+} */

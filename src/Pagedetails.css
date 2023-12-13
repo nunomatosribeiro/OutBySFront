@@ -1,28 +1,50 @@
- .page-details-container{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-}
-.container1{
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    width: 80vw;
-    
-    padding-left: 50px;
-    padding-right: 50px;
-    padding-top: 20px;
-    padding-bottom: 20px;
-}
+.page-details-container{
 
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+}
+/*Section1*/
+.section1-gallery-page-details{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+width: 100vw;
+padding: 20px;
+}
+/*Section2*/
+.section2-title-page-details{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  width: 80vw;
+}
+.title-page-details{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start
+}
 .title-page-details h1{
 padding: 5px;
+
 }
-.description-page-details{
-    padding: 5px;
-    width: 90%;
+/*Section3*/
+.section3-description-page-details{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  width: 80vw;
+}
+/*Section4*/
+.section4-about-page-details{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  width: 80vw;
 }
 .info-page-details h3{
   display: flex;
@@ -31,6 +53,16 @@ padding: 5px;
 }
 .info-page-details p{
   padding: 5px;
+}
+
+
+/*Section5*/
+.section5-included-page-details{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  width: 80vw;
 }
 .included-page-details{
   display: flex;
@@ -42,6 +74,9 @@ padding: 5px;
   padding: 5px;
   list-style-type: none;
 }
+
+
+/*** Image Gallery **/
 .image-gallery-description{
     display: none;
 }
@@ -59,21 +94,34 @@ display: none;
   border-radius: 10px;
   height: 60px;
 }
-.container-pageDetails-price-text{
-display: flex;
-justify-content: space-between;
+.image-gallery.image-gallery-using-mouse{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+
+
+/** section7 **/
+
+.section7-price-page-details{
+  height: 500px;
+  display: flex;
+ flex-direction: column;
+ justify-content: center;
+ align-items: center;
+padding: 20px;
 }
 .container-price{
-  border: 1px solid grey;
-  border-radius: 4px;
- 
+  max-height: 30vh;
+  border-top: 10px solid rgb(116, 198, 246, 0.5);
+width: 30vw;
+ display: flex;
+ flex-direction: column;
   font-size: 2rem;
-  padding: 5px;
 }
-.container-price span{
-  
-  color: rgb(61, 61, 61);
-}
+
 .container-price p{
   padding-top: 15px;
   font-size: 0.8rem;
@@ -81,17 +129,13 @@ justify-content: space-between;
 }
 @media screen and (min-width: 761px) and (max-width: 1048px) {
   .container-price{
-    border: 1px solid grey;
-    border-radius: 4px;
+    
     width: 20vw;
     height: 20vh;
     font-size: 1.5rem;
     padding: 1px;
   }
-  .container-price span{
-    font-size: 1rem;
-    color: rgb(61, 61, 61);
-  }
+  
   .container-price p{
     padding-top: 10px;
     font-size: 0.7rem;
@@ -102,7 +146,9 @@ justify-content: space-between;
   .container-price {
       font-size: 1.5rem;
       border: none;
-width: 20vw;
+width: 35vw;
+position: relative;
+height: auto;
   }
   .container-price span{
     font-size: 1rem;
@@ -113,4 +159,83 @@ width: 20vw;
     font-size: 0.7rem;
     color: rgb(61, 61, 61);
   }
+}
+
+/** Section 6 **/
+
+/* Reviews component*/
+.section6-reviews-page-details{
+  width: 90vw;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+.container-ReviewPageComponent{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.reviews-container{
+  max-width: 70vw;
+  height: 300px;
+}
+
+.dv-star-rating {
+  font-size: 32px !important;
+   
+}
+/* magic form page details*/
+
+.magic-form {
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+}
+.magic-form input{
+  border-radius: 5px;
+  border: 1px solid black;
+  margin: 5px;
+}
+.magic-form button{
+  border-radius: 45px;
+  border: 1px solid black;
+  min-width: 20vw;
+  height: 55px;
+  padding: 5px;
+  margin: 3px;
+}
+.magic-form button:hover {
+  background-color: rgb(213, 209, 209);
+}
+
+
+/* Submit Review Container Page Details*/
+
+.submitReviewContainer{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.submitReviewContainer form{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.submitReviewContainer button{
+  border-radius: 45px;
+  border: 1px solid black;
+  min-width: 20vw;
+  height: 55px;
+  padding: 5px;
+  margin: 3px;
+}
+.submitReviewContainer button:hover{
+  background-color: rgb(205, 203, 203);
+}
+.dv-star-rating-star.dv-star-rating-empty-star:hover i{
+  color: orange;
 }

@@ -17,6 +17,8 @@ import { Cloudinary } from "@cloudinary/url-gen";
 import Footer from './components/Footer';
 import PageDetails from './pages/PageDetails';
 import AboutUs from './pages/aboutUs';
+import ReserveNow from './components/ReserveNow';
+import { Reviews } from '@mui/icons-material';
 
 function App() {
   const [showModal, setShowModal] = useState(false) //Apagar
@@ -36,13 +38,14 @@ setIsModalOpen(false)
        <Navbar openModal={openModal} />
       <Modal isOpen={isModalOpen} onClose={closeModal} />
       <Routes>
-        <Route path='/' element={<MainPage openModal={openModal}  />} />
+        <Route path='/' element={<MainPage isOpen={isModalOpen} openModal={openModal}  />} />
         <Route path='/Login' element={<Login />} />
         <Route path='/Signup' element={<Signup />} />
         <Route path='/posts/:category' element={<AllPostsByCategory />} />
+        {/* <Route path='/users/:userId' element={<ReserveNow  />} /> */}
         <Route path='/posts/details/:postId' element={<PageDetails  />} />
-<Route path='/aboutus' element={<AboutUs />} />
-
+        <Route path='/aboutus' element={<AboutUs />} />
+        <Route path="/:postId/review" element={Reviews} />
 
         <Route path='/Tailormade' element={<TailorMade />} />
         <Route path='/Food' element={<FoodPage />} />
@@ -51,7 +54,7 @@ setIsModalOpen(false)
         <Route path='/Wishlist' element={<WishlistPage />} />
         <Route path='/createpost' element={<CreatePostPage imageData={imageData} setImageData={setImageData} />} />
       </Routes>
-      <Footer />
+      <Footer isOpen={isModalOpen} />
     </>
   )
 }

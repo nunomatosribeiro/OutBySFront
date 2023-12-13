@@ -11,8 +11,8 @@ const handleTabClick = (tab)=>{
 
     return (
     
-      <div className="tab-container">
-        <ul >
+      
+        <ul className="tab-container" >
         <li>
             <Link to={'/Tailormade'}>
               <button
@@ -40,7 +40,7 @@ const handleTabClick = (tab)=>{
               </button></Link>
           </li>
         </ul>
-      </div>
+      
     
       )
     }

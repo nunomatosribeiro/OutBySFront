@@ -8,6 +8,7 @@ import { FaUser  } from 'react-icons/fa';
 import { Dropdown } from 'react-bootstrap';
 import { useEffect } from "react";
 import '../Navbar.css'
+import { apiBaseUrl } from "../config";
 
 
 const Navbar = ( { openModal }) => {
@@ -34,15 +35,15 @@ const Navbar = ( { openModal }) => {
     return (
       <nav className={`navbar ${isScrolled ? 'scrolled' : ''}`}>
         <div className='page-header_container'>
-          <Link className="logo-NavBar" to={'/'}>
-            OutByS
+          <Link className="logo-NavBar" to={'/'}><h1>
+            OutByS</h1>
           </Link>
           
           
           
           {isLoggedIn ? (  
             <div className="wishlist-toggle-navbar">
-          <Link to={`/posts/${userId}/favorites`} ><FavoriteBorderIcon style={{color: 'black'}} /></Link>  
+          <Link to={`${apiBaseUrl}/posts/${userId}/favorites`} ><FavoriteBorderIcon style={{color: 'black'}} /></Link>  
    <Dropdown>
    <Dropdown.Toggle style={{backgroundColor: 'transparent', border: 'transparent'}} variant="success" id="dropdown-basic">
      <FaUser style={{color: "#000000"}} />

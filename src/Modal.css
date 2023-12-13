@@ -9,16 +9,14 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    z-index: 1;
+    z-index: 2;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
   }
-  .socialmedia-signin-container{
-    max-height: 50%;
-  }
+ 
   .socialmedia-signin-container img{
-    max-width: 90%;
+    min-width: 100%;
   }
   .socialmedia-signin-container img:hover{
 border-radius: 2px;
@@ -33,10 +31,30 @@ border-radius: 2px;
     background-size: cover;
     
   }
+  @media screen and (max-width: 850px) {
+    .modal-image{
+  display: none;
+    }
+    .modal-container-active {
+      background-color: #fff;
+      position: fixed;
+      border-radius: 10px;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+      min-width: 80vw;
+      min-height: 55vh;
+      text-align: center;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 2;
+      
+    }
+  }
   .modal-form{
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
+    align-items: center;
  width: 50%;
  height: 100%;
  padding: 5px;
@@ -54,8 +72,34 @@ border-radius: 2px;
     margin: 5px 0;
     border: 1px solid #ccc;
     border-color: rgb(19, 69, 19);
+    border-radius: 5px;
   }
-
+  @media screen and (max-width: 850px) {
+    .inputStyle {
+      display: flex;
+      justify-content: flex-start;
+      min-width: 50vw;
+      padding: 5px;
+      margin: 5px 0;
+      border: 1px solid #ccc;
+      border-color: rgb(19, 69, 19);
+      border-radius: 5px;
+      height: 40px;
+    }
+  }
+  @media screen and (max-width: 500px) {
+    .inputStyle {
+      display: flex;
+      justify-content: flex-start;
+      min-width: 70vw;
+      padding: 5px;
+      margin: 5px 0;
+      border: 1px solid #ccc;
+      border-color: rgb(19, 69, 19);
+      border-radius: 5px;
+      height: 40px;
+    }
+  }
   .buttonContainer {
     margin-top: 20px;
     
@@ -116,4 +160,35 @@ font-size: 0.5rem;
   justify-content: center;
   align-items: center;
   min-width: 60vw;
+}
+@media screen and(max-width: 850px) {
+  .modal-container-responsive{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    min-width: 60vw;
+    
+  }
+}
+.login-signup_container button{
+    text-decoration: none;
+    padding: 5px;
+    color: white;
+    transition: all .5s ease;
+    margin: 2px;
+    border: 2px solid white;
+    font-family:'Lato', sans-serif;
+    text-transform: uppercase;
+    text-align: center;
+    line-height: 1;
+    font-size: 17px;
+    background-color : transparent;
+    outline: none;
+    border-radius: 4px;
+}
+.login-signup_container button:hover {
+    color: #001F3F;
+    background-color: white;
 }

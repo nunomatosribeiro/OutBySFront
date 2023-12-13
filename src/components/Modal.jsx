@@ -110,7 +110,7 @@ if(!isOpen){
             
             <div className='socialmedia-signin-container'>
               <br />
-              <br />
+             
               <img
                 onClick={() => login()}
                 src='../public/google_signin.png'

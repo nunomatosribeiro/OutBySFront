@@ -1,3 +1,7 @@
+.aboutus-full-page-container{
+    color: rgb(83, 82, 82);
+ 
+}
 #section01{
     position: relative;
     display: flex;
@@ -5,8 +9,8 @@
     justify-content: space-evenly;
     transform: translate(0, -15%);
     }
-    .hero-Image{
-        background-image:  url("../public/section01Image.jpg");
+     .hero-Image{
+        background-image:  url("./section01Image.jpg");
          position: relative;
             top: 0;
             left: 0;
@@ -16,7 +20,7 @@
             background-position: center ;
             background-size: cover;
             height: 700px;
-        }
+        } 
         .hero-Text{
             text-align: center;
             position: absolute;
@@ -28,4 +32,122 @@
             .hero-Text h1{
             font-size: 3rem;
             text-align: center;
+            }
+            .aboutus-page-travel-experience{
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                padding: 20px;
+                
+            }
+            .aboutus-page-travel-experience h3{
+                
+                font-size: 2rem;
+            }
+            .aboutus-page-travel-experience p{
+                
+                font-size: 1.1rem;
+            }
+            .aboutus-page-travel-experience img{
+                height: 80vh;
+                width: 60vw
+            }
+            .aboutus-page-maximize-trip{
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-start;
+                align-items: center;
+                background-color: rgb(250, 234, 215);
+                height: 90vh;
+                padding: 10px;
+            }
+            .text-container-maximize-trip{
+display: flex;
+flex-direction: column;
+
+            }
+            .aboutus-page-maximize-trip h3{
+                font-size: 2.8rem;
+            }
+            .aboutus-page-maximize-trip p{
+                font-size: 1.1rem;
+            }
+            @media screen and (max-width: 720px) {
+                .aboutus-page-maximize-trip{
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    background-color: rgb(250, 234, 215);
+                    height: 70vw;
+                    height: 600px;
+                }
+                .aboutus-page-maximize-trip h3{
+                    font-size: 1.8rem;
+                }
+                .aboutus-page-maximize-trip p{
+                    font-size: 0.9rem;
+                }
+            }
+            @media screen and (max-width: 500px) {
+                .aboutus-page-maximize-trip{
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    background-color: rgb(250, 234, 215);
+                    height: 600px;
+                    padding: 5px;
+                }
+                .aboutus-page-maximize-trip h3{
+                    font-size: 1.5rem;
+                }
+                .aboutus-page-maximize-trip p{
+                    font-size: 0.9rem;
+                }
+            }
+            
+            .aboutus-page-maximize-trip img{
+              max-height: 500px;
+                width: 50vw
+            }
+            .aboutus-page-best-sights{
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                padding: 20px;
+            }
+            .aboutus-page-best-sights h3{
+                font-size: 2rem;
+            }
+            .aboutus-page-best-sights p{
+                font-size: 1.1rem;
+            }
+            .aboutus-page-best-sights img{
+                height: 80vh;
+                width: 60vw
+            }
+            .aboutus-page-delicious-foods h3{
+                display: flex;
+                justify-content: center;
+                color: orange;
+                font-size: 2rem;
+            }
+            .aboutus-page-delicious-foods p{
+                display: flex;
+                justify-content: center;
+                font-size: 1.1rem;
+                
+            }
+            .aboutus-page-delicious-foods-img{
+                display: flex;
+                justify-content: space-evenly;
+                width: 100vw
+            }
+            .aboutus-page-delicious-foods-img img{
+                width: 40vw;
+                height: 75vh;
+                padding: 20px
             }

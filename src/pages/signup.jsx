@@ -6,7 +6,9 @@ import CloudinaryUpload from "../components/CloudinaryUpload";
 import { AuthContext } from "../context/Auth.context";
 import '../signup.css'
 import '../App.css'
+
 const Signup = () => {
+  const [name, setName] = useState("");
     const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -21,9 +23,10 @@ const Signup = () => {
       const res = await axios.post(
         `${apiBaseUrl}/auth/signup`,
 
-        { username, email, password, image }
+        { name, username, email, password, image }
       );
       {
+        setName("");
         setUsername("");
         setEmail("");
         setPassword("");
@@ -71,7 +74,16 @@ const Signup = () => {
       <form onSubmit={handleSignup} style={formStyle}>
       <div className="label-container">
       <label htmlFor="username">Username</label>
-      
+      <input
+        
+          type="text"
+          value={name}
+          required
+          onChange={(event) => {
+            setName(event.target.value);
+          }}
+          
+        />
       <input
         
           type="text"
