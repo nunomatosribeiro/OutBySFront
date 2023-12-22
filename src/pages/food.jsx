@@ -1,8 +1,8 @@
 import React from 'react'
 
-const FoodPage = () => {
+const FoodPage = ({ isOpen }) => {
   return (
-    <div>
+    <div className={isOpen ? "mainpage-container-blur" :''}>
       
     </div>
   )

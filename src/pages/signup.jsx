@@ -2,14 +2,14 @@ import axios from "axios";
 import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { apiBaseUrl } from "../config";
-import CloudinaryUpload from "../components/CloudinaryUpload";
+/* import CloudinaryUpload from "../components/CloudinaryUpload"; */
 import { AuthContext } from "../context/Auth.context";
 import '../signup.css'
 import '../App.css'
 
 const Signup = () => {
   const [name, setName] = useState("");
-    const [username, setUsername] = useState("");
+    
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [image, setImage] = useState("");
@@ -23,18 +23,18 @@ const Signup = () => {
       const res = await axios.post(
         `${apiBaseUrl}/auth/signup`,
 
-        { name, username, email, password, image }
+        { name, email, password, image }
       );
       {
         setName("");
-        setUsername("");
+       
         setEmail("");
         setPassword("");
-        setImage("")
+        /* setImage(""); */
       }
 
       console.log("here is the signup response", res.data);
-      nav("/Login");
+      nav("/");
     } catch (error) {
       console.error(error);
     }
@@ -45,7 +45,7 @@ const Signup = () => {
     fontSize: "60px",
       fontWeight: "bold",
       textShadow: "2px 2px 4px rgba(0, 0, 0, 0.5)",
-      textAlign: "center", // Center the title
+      textAlign: "center",
       color: 'white',
   }
 
@@ -73,7 +73,7 @@ const Signup = () => {
       </div>
       <form onSubmit={handleSignup} style={formStyle}>
       <div className="label-container">
-      <label htmlFor="username">Username</label>
+      <label htmlFor="username">Name</label>
       <input
         
           type="text"
@@ -84,7 +84,7 @@ const Signup = () => {
           }}
           
         />
-      <input
+      {/* <input
         
           type="text"
           value={username}
@@ -93,7 +93,7 @@ const Signup = () => {
             setUsername(event.target.value);
           }}
           
-        />
+        /> */}
         
         <label htmlFor="email">Email</label>
        
@@ -120,7 +120,7 @@ const Signup = () => {
           
         />
         </div>
-        <CloudinaryUpload allowMultiple={false} initialMedia={[]} />
+        {/* <CloudinaryUpload allowMultiple={false} initialMedia={[]} /> */}
         <button type="submit">
           Signup
         </button>

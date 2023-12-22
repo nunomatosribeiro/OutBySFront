@@ -21,7 +21,7 @@ return (
 <div className="hero-Text">
 <h1>Welcome to OutByS</h1>
 <p>Live the city as a local</p>
-<p>Talk with us, we will get the rest!</p>
+<p>We are here to take care of the logistics, while you can enjoy the city!</p>
 </div>
 </div>
 
@@ -36,9 +36,14 @@ return (
 <img className='porto-imageTailormade' src='porto-image.jpg'/>
 <div className='text-container-tailormade-mainpage'>
 <h1>Tailor Made Experiences</h1>
-<p>Text us and we will help you plan your trip.<br/>
-If its your first time in Porto do not worry<br/>
-we will plan everything for you. Just tell us what you like! </p>
+<p>First time visitor or a Portugal lover?
+With focus in Porto and nearby cities such as Douro Valley and the north of Portugal, we are pleased
+to help you with unique experiences, exceed your expectations, with
+personal care anywhere and at any time !!
+Let us in charge of your journey in Porto and have a magical experience.</p>
+<p>We are available 24 hours via WhatsApp and e-mail.
+Looking forward to hear from you and welcome to Porto!</p>
+
 <Link to={'/Tailormade'}><button>Learn more</button></Link>
 </div>
 </div>
@@ -104,8 +109,10 @@ you can count on us for a remarkable experience! </p>
 </div>
 </section>
 <section className="section-TailormadeForm">
+      <div className="tailormade-form-container">
 <h1>What it would be a remarkable journey for you?</h1>
 <FormTailormade />
+</div>
 </section>
 </div>
 )

@@ -4,19 +4,21 @@ import { Link, useParams } from "react-router-dom"
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { FaUser  } from 'react-icons/fa';
-
 import { Dropdown } from 'react-bootstrap';
 import { useEffect } from "react";
 import '../Navbar.css'
 import { apiBaseUrl } from "../config";
+import axios from "axios";
 
 
 const Navbar = ( { openModal }) => {
   const [ profile, setProfile ] = useState([]);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [name, setName] = useState('')
   const { isLoggedIn, user, logOutUser } = useContext(AuthContext)
   const [signUp, setSignUp] = useState(false);
   const {userId} = useParams()
+console.log(user)
   useEffect(() => {
     const handleScroll = () => {
       const scrollTop = window.scrollY;
@@ -29,9 +31,13 @@ const Navbar = ( { openModal }) => {
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
+
+ 
   const handleSignUp = () => {
     setSignUp(!signUp)
   }
+
+
     return (
       <nav className={`navbar ${isScrolled ? 'scrolled' : ''}`}>
         <div className='page-header_container'>
@@ -43,16 +49,16 @@ const Navbar = ( { openModal }) => {
           
           {isLoggedIn ? (  
             <div className="wishlist-toggle-navbar">
-          <Link to={`${apiBaseUrl}/posts/${userId}/favorites`} ><FavoriteBorderIcon style={{color: 'black'}} /></Link>  
+          <Link to={`/favorites/${user._id}`} ><FavoriteBorderIcon style={{color: 'white'}} /></Link>  
    <Dropdown>
    <Dropdown.Toggle style={{backgroundColor: 'transparent', border: 'transparent'}} variant="success" id="dropdown-basic">
-     <FaUser style={{color: "#000000"}} />
-
+     <FaUser style={{color: "white"}} />
    </Dropdown.Toggle>
 
-   <Dropdown.Menu >     
-    <img src={profile.picture} width='20' alt="user image" />
-     <p style={{ backgroundColor: 'red', width: '50px' }}>{profile.name}</p>
+   <Dropdown.Menu>
+    {/* <img src={profile.picture} width='20' alt="user image" /> */}
+    <Dropdown.Item><p>{user.name}</p></Dropdown.Item>
+     <Dropdown.Item> <p><Link to={`/profile/${user._id}`}>Profile</Link></p></Dropdown.Item>
      <Dropdown.Item onClick={logOutUser}>Log out</Dropdown.Item>
    </Dropdown.Menu>
  </Dropdown>

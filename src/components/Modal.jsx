@@ -76,7 +76,7 @@ if(!isOpen){
           <div className='modal-container-responsive'>
             <div className="modal-image"></div>
             <div className="modal-form">
-              <form onSubmit={handleLogin}>
+              <form >
                 <input
                   className="inputStyle"
                   type='email'
@@ -95,7 +95,7 @@ if(!isOpen){
                 />
               </form>
               <div className="buttonContainer">
-                <button className="buttonStyle" onClick={handleLogin} >
+                <button className="buttonStyle" onClick={handleLogin}  >
                   Login
                 </button>
                 <button className="closeButton" onClick={onClose}>

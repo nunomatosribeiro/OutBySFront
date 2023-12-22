@@ -1,9 +1,9 @@
 import React from 'react'
 import '../AboutUs.css'
-export default function AboutUs() {
+export default function AboutUs({ isOpen }) {
 
   return (
-    <div className='aboutus-full-page-container'>
+   /*  <div className={isOpen ? "mainpage-container-blur" : 'aboutus-full-page-container'}>
     <section id="section01">            
 <div className="hero-Image">
 <div className="hero-Text">
@@ -48,6 +48,33 @@ export default function AboutUs() {
 </div></div>
 
         </div>
+</section> */
+<div>
+<section id="section01">            
+<div className="hero-Image">
+<div className="hero-Text">
+     
+<h1>Know a bit more about us</h1>
+</div>
+</div>
+</section>
+<section>
+  <h1>Our mission</h1>
+  <p>Welcome to OutByS</p>
+<p>We're a team of passionate travel enthusiasts who believe that 
+everyone deserves to experience the beauty and culture of this stunning city. 
+Our mission is to make it easy for visitors to discover and book the best tours and activities in Porto, 
+with just a few clicks.
+With years of experience in tourism, we've created a 
+user-friendly platform that combines our expertise and passion for travel. 
+From exploring the city's rich history and architecture to indulging in 
+delicious food and wine, our curated collection of tours has something for 
+everyone.
+Our team is committed to providing exceptional customer service and ensuring
+that our users have a seamless and enjoyable experience. So whether you're
+a seasoned traveler or a first-time visitor, we invite you to discover 
+the magic of Porto with us!</p>
+<h1>Our team</h1>
 </section>
 </div>
   )

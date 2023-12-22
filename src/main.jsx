@@ -6,14 +6,14 @@ import './index.css'
 import { BrowserRouter } from 'react-router-dom'
 import { AuthContextWrapper } from './context/Auth.context.jsx'
 import 'bootstrap/dist/css/bootstrap.css';
-
+import './Mainpage.css'
 ReactDOM.createRoot(document.getElementById('root')).render(
   <GoogleOAuthProvider clientId="1080037962790-pdqotlk2o8qive3dtik9k94fkqoqcdu5.apps.googleusercontent.com">
   <React.StrictMode>
   <BrowserRouter>
   <AuthContextWrapper>
     <App />
-    </AuthContextWrapper>
+  </AuthContextWrapper>
   </BrowserRouter>
 </React.StrictMode>
 </GoogleOAuthProvider>,

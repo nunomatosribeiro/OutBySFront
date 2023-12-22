@@ -6,7 +6,7 @@ import CardDetails from '../components/CardDetails'
 import '../AllPostsByCategory.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
-const AllPostsByCategory = () => {
+const AllPostsByCategory = ({ isOpen }) => {
   const [posts, setPosts] = useState([])
  const { category } = useParams()
 
@@ -30,7 +30,6 @@ const AllPostsByCategory = () => {
             }
           })
         );
-
         setPosts(postsWithImageData)
         console.log('DATA BY CATEGORY', postsWithImageData)
       } catch (error) {
@@ -42,7 +41,7 @@ const AllPostsByCategory = () => {
 
 
   return (
-    <div >
+    <div className={isOpen ? "mainpage-container-blur" : ''} >
         <section id="tours-section01">
 <div className="hero-Image-tours">
 
@@ -51,7 +50,7 @@ const AllPostsByCategory = () => {
 
 <section id='tours-section02'>
 <h1>Check here your {category}</h1>
-    <CardDetails posts={posts} category={category} />
+    <CardDetails isOpen={isOpen} posts={posts} category={category} />
    </section>
     </div>
     

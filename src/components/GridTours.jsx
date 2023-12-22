@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import axios from 'axios';
+import { AuthContext } from "../context/Auth.context";
 import { apiBaseUrl } from '../config';
 import Slider from "react-slick";
 import CardMedia from '@mui/material/CardMedia';
@@ -14,12 +15,21 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 
 function GridMainPage () {
   const [posts, setPosts] = useState([]);
-  const [favorites, setFavorites] = useState(Array(posts.length).fill(false));
-
+  const [favorites, setFavorites] = useState([Array(posts.length).fill(false)]);
+  const { user, isLoggedIn } = useContext(AuthContext);
+  if (user) {
+    console.log('check here the user id', user._id);
+  } else {
+    console.log('User is not available or not logged in.');
+  }
   useEffect(() => {
     fetchPosts();
   }, []);
-
+useEffect(() => {
+    if (user) {
+      handleFavoritesClick(); // Trigger favorites update when the component mounts and user is available
+    }
+  }, [user]);
   const fetchPosts = async () => {
     try {
       const response = await axios.get(`${apiBaseUrl}/posts/Tours`);
@@ -36,16 +46,61 @@ function GridMainPage () {
       );
 
       setPosts(postsWithImageData);
+      console.log('check here the posts data, ver se tem ID para o codigo', posts)
     } catch (error) {
       console.log('Error fetching posts by category', error);
     }
   };
-  const handleFavoriteClick = (index) => {
-    const newFavorites = [...favorites];
-    newFavorites[index] = !newFavorites[index];
-    setFavorites(newFavorites);
-    console.log(index)
+  
+  const handleFavoritesClick = async () => {
+    try {
+      const token = localStorage.getItem("authToken");
+      const userData = await axios.post(`${apiBaseUrl}/favorites/${user._id}`, null, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      const currentFavorites = userData.data.favorites || [];
+      setFavorites(currentFavorites);
+    } catch (error) {
+      console.error('Error updating favorites:', error);
+    }
   };
+
+  const handleAddToFavorites = async (post) => {
+    try {
+      if (user && user._id) {
+        const token = localStorage.getItem("authToken");
+        const userData = await axios.post(`${apiBaseUrl}/favorites/${user._id}`, null, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+
+        const currentFavorites = userData.data.favorites || [];
+        const isAlreadyInFavorites = currentFavorites.includes(post._id);
+
+        if (!isAlreadyInFavorites) {
+          // If not in favorites, add it to the array
+          const updatedFavorites = [...currentFavorites, post._id];
+
+          await axios.put(`${apiBaseUrl}/users/${user._id}`, { favorites: updatedFavorites });
+
+          alert('Post added to favorites!');
+          setFavorites(updatedFavorites);
+        } else {
+          alert('Post is already in favorites!');
+        }
+      } else {
+        console.error('User or user._id is undefined.');
+      }
+    } catch (error) {
+      console.error('Error updating favorites:', error);
+    }
+  };
+
+  
   const settings1 = {
     dots: false,
     infinite: true,
@@ -54,10 +109,19 @@ function GridMainPage () {
     slidesToScroll: 1,
     responsive: [
       {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 4,
+          slidesToScroll: 1,
+          
+        
+        },
+      },
+      {
         breakpoint: 768,
        
         settings: {
-          slidesToShow: 2,
+          slidesToShow: 3,
           slidesToScroll: 1,
           
         },
@@ -108,8 +172,16 @@ function GridMainPage () {
         <IconButton
           aria-label="AddToFavorites"
           className='favorites'
-               onClick={() => handleFavoriteClick(index)} 
-               style={{ border:'none', color: favorites[index] ? 'red' : 'inherit', backgroundColor: 'transparent' }} 
+               onClick={() => handleAddToFavorites(post)} 
+              style={
+                isLoggedIn
+                  ? {
+                      border: 'none',
+                      color: favorites.includes(post._id) ? 'rgb(64, 105, 194)' : 'inherit',
+                      backgroundColor: 'transparent',
+                    }
+                  : {border: 'none', color: 'inherit', backgroundColor: 'transparent' } // Empty object for no styles when not logged in
+              }
           >
           <FavoriteIcon />
         </IconButton>

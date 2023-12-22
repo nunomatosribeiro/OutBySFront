@@ -23,10 +23,11 @@ height: auto !important;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 45vw;
+    width: 35vw;
     gap:2em;
     padding: 5px;
 }
+
 .container-section1-tailormade-page-intro img{
     width: 50vw;
     max-height: 600px;

@@ -15,18 +15,21 @@ import ShareIcon from '@mui/icons-material/Share';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import Grid from '@mui/material/Grid';
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import Box from '@mui/material/Box';
 import { Link } from 'react-router-dom';
 import '../AllPostsByCategory.css'
+import axios from 'axios';
+import { apiBaseUrl } from '../config';
+import { AuthContext } from "../context/Auth.context";
 
-
-const CardDetails = ({ posts, onLike, handleUnlike }) => {
+const CardDetails = ({ posts, onLike, handleUnlike, isOpen }) => {
     const [expanded, setExpanded] = React.useState(false);
 const [isClicked, setIsClicked] = useState(false);
 const [isLiked, setIsLiked] = useState(false);
 const [favorites, setFavorites] = useState(Array(posts.length).fill(false));
-console.log(posts)
+const { user } = useContext(AuthContext);
+console.log(user)
 const ExpandMore = styled((props) => {
 
     const { expand, ...other } = props;
@@ -39,20 +42,15 @@ const ExpandMore = styled((props) => {
       duration: theme.transitions.duration.shortest,
     }),
   }));
-
+ 
     const handleExpandClick = () => {
       setExpanded(!expanded);
     };
     
-    const handleFavoriteClick = (index) => {
-      const newFavorites = [...favorites];
-      newFavorites[index] = !newFavorites[index];
-      setFavorites(newFavorites);
-      console.log(index)
-    };
+  
    
     return ( 
-        <div>
+        <div className={isOpen ? "mainpage-container-blur" : ''}>
           
           <Box sx={{ flexGrow: 1 }}>
       <Grid container spacing={{ xs: 1, md: 1 }} columns={{ xs: 4, sm: 8, md: 12 }}>
@@ -100,7 +98,7 @@ const ExpandMore = styled((props) => {
           onClick={() => setIsClicked(!isClicked)}
           style={{ color: isClicked ? 'red' : 'inherit' }} */
           aria-label="add to favorites"
-              onClick={() => handleFavoriteClick(index)}
+              onClick={() => handleFavoritesClick(index, post)}
               style={{ color: favorites[index] ? 'red' : 'inherit' }}
           >{/* favorites={post.favorites} */}
           <FavoriteIcon onClick={isLiked ? handleUnlike : onLike} />

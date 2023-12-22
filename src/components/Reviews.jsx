@@ -81,7 +81,7 @@ console.log('CHECK HERE THE RATINGS',ratings)
 
 const settings = {
   dots: false,
-  infinite: true,
+  infinite: false,
   speed: 500,
   variableWidth: true,
   slidesToShow: 5,

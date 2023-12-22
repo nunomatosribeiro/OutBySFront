@@ -27,14 +27,14 @@ import { apiBaseUrl } from '../config';
     {src: 'porto-activities.jpg', alt: 'Porto image'},
   ] */
 
-const ToursPage = () => {
+const ToursPage = ({ isOpen }) => {
   
 
   
       return ( 
-    <>
+    <div className={isOpen ? "mainpage-container-blur" :''}>
     <h1></h1>
-    </>
+    </div>
      );
 }
  

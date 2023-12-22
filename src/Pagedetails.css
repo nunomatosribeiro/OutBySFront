@@ -161,6 +161,30 @@ height: auto;
   }
 }
 
+/* magic form page details*/
+
+.magic-form {
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+}
+.magic-form input{
+  border-radius: 5px;
+  border: 1px solid black;
+  margin: 5px;
+}
+.magic-form button{
+  border-radius: 45px;
+  border: 1px solid black;
+  min-width: 20vw;
+  height: 55px;
+  padding: 5px;
+  margin: 3px;
+}
+
+.magic-form button:hover {
+  background-color: rgb(213, 209, 209);
+}
 /** Section 6 **/
 
 /* Reviews component*/
@@ -188,30 +212,14 @@ height: auto;
   font-size: 32px !important;
    
 }
-/* magic form page details*/
-
-.magic-form {
- display: flex;
- flex-direction: column;
- align-items: center;
+.image-text-slick-container{
+  display: flex;
 }
-.magic-form input{
-  border-radius: 5px;
-  border: 1px solid black;
-  margin: 5px;
+.slick-track{
+  display: flex;
+  justify-content: center;
+  width: 100vw;
 }
-.magic-form button{
-  border-radius: 45px;
-  border: 1px solid black;
-  min-width: 20vw;
-  height: 55px;
-  padding: 5px;
-  margin: 3px;
-}
-.magic-form button:hover {
-  background-color: rgb(213, 209, 209);
-}
-
 
 /* Submit Review Container Page Details*/
 
@@ -239,3 +247,4 @@ height: auto;
 .dv-star-rating-star.dv-star-rating-empty-star:hover i{
   color: orange;
 }
+

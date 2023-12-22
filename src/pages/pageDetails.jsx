@@ -20,7 +20,7 @@ import ReserveNow from '../components/ReserveNow'
 import ReviewPage from '../components/Reviews'
 import AvgReviewComponent from '../components/AvgReviews'
 
-export default function PageDetails() {
+export default function PageDetails({ isOpen }) {
     const { postId } = useParams();
     const [posts, setPosts] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
@@ -51,7 +51,7 @@ visible="true"
  />
   }
   return (
-    <div className='page-details-container'>
+    <div className={isOpen ? "mainpage-container-blur" : 'page-details-container'}>
     
     <section className='section1-gallery-page-details'>
       <PageDetailsImages posts={posts} /> 

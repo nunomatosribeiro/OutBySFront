@@ -29,9 +29,9 @@ const postImage = async () => {
     setImageData(response.data)
     const updatedMedia = allowMultiple ? [...allMedia, dataAsString] : [dataAsString]
     setAllMedia(updatedMedia)
-onMediaUpdated(updatedMedia)
-   setConfirmUpload(false);
-      setSelectedFiles([]);
+    onMediaUpdated(updatedMedia)
+    setConfirmUpload(false);
+    setSelectedFiles([]);
 
       await axios.post(`${apiBaseUrl}/posts/createpost`, {
         allMedia: response.data.public_id,

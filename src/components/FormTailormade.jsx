@@ -8,7 +8,18 @@ export default function FormTailormade() {
     name: '',
     email: '',
     message: '',
+    tours: false,
+    activities: false,
+    food: false,
+    other: false,
   });
+  const [checked, setChecked] = useState(false);
+
+  const handleChangeCheckBox = (e) => {
+    const { name, checked } = e.target;
+   
+    setFormData({ ...formData, [name]: checked });
+  };
   const nav = useNavigate()
 
     const handleChange = (e) => {
@@ -45,12 +56,30 @@ console.error(error);
       
       <label>
         Email:
-        <input type="email" name="email" value={formData.email} onChange={handleChange} />
+        <input type="email" name="email" value={formData.email} onChange={handleChange} required />
       </label>
-     
+      
+        What are you looking to enjoy in Porto?
+      
+  <div style={{display: 'flex', alignItems: 'center'}}>
+        <input type="checkbox" name="tours"  checked={formData.tours} onChange={handleChangeCheckBox} />
+         Tours
+        </div>
+        <div style={{display: 'flex', alignItems: 'center'}}>
+        <input type="checkbox" name="activities"  checked={formData.activities} onChange={handleChangeCheckBox} />
+        Activities
+        </div>
+        <div style={{display: 'flex', alignItems: 'center'}}>
+        <input type="checkbox" name="food"  checked={formData.food} onChange={handleChangeCheckBox} />
+        Food
+        </div>
+        <div style={{display: 'flex', alignItems: 'center'}}>
+        <input type="checkbox" name="other"  checked={formData.other} onChange={handleChangeCheckBox} />
+        Other
+        </div>
       <label>
         Message:
-        <textarea placeholder='Tells us here. ' name="message" value={formData.message} onChange={handleChange} />
+        <textarea placeholder='Tell us here. ' name="message" value={formData.message} onChange={handleChange} />
       </label>{ /* what you believe it would be a remarkable journey. */}
      
       <button type="submit">Submit</button>
