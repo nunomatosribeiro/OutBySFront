@@ -14,7 +14,7 @@ import CreatePostPage from './pages/createPost';
 import AllPostsByCategory from './pages/AllPostsByCategory'
 import { Cloudinary } from "@cloudinary/url-gen";
 import Footer from './components/Footer';
-import PageDetails from './pages/PageDetails';
+import PageDetails from './pages/pageDetails';
 import AboutUs from './pages/aboutUs';
 import ReserveNow from './components/ReserveNow';
 import TermsAndConditions from './pages/termsAndConditions';
