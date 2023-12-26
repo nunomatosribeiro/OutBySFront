@@ -1,4 +1,4 @@
-import StarRatingComponent from 'react-star-rating-component';
+import StarRatingComponent from 'react-rating-stars-component';
 
 
 const StarRating = ({ onStarClick, value }) => (
