@@ -2,7 +2,7 @@ import axios from 'axios';
 import React,  { useEffect, useState } from 'react'
 import { apiBaseUrl } from '../config';
 import { useNavigate, useParams } from 'react-router-dom';
-import '../PageDetails.css'
+import '../Pagedetails.css'
 export default function ReserveNow() {
     const { userId, postId } = useParams()
     console.log('Params:', { userId, postId })
