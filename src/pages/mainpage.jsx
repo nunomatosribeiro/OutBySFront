@@ -18,15 +18,14 @@ return (
 
 <section id="section01">            
 <div className="hero-Image">
+      <img src="/section01Image.jpg" alt="mainpage-intro-image" />
 <div className="hero-Text">
 <h1>Welcome to OutByS</h1>
 <p>Live the city as a local</p>
 <p>We are here to take care of the logistics, while you can enjoy the city!</p>
 </div>
 </div>
-
 <Tab />
-
 </section>
 
   
@@ -44,7 +43,7 @@ Let us in charge of your journey in Porto and have a magical experience.</p>
 <p>We are available 24 hours via WhatsApp and e-mail.
 Looking forward to hear from you and welcome to Porto!</p>
 
-<Link to={'/Tailormade'}><button>Learn more</button></Link>
+<Link to={'/posts/Tailormade'}><button>Learn more</button></Link>
 </div>
 </div>
 </section>

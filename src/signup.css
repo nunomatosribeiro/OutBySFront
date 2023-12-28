@@ -79,3 +79,9 @@ height: 100vh;
             height: 100vh;
         }
 }
+.form-container-signup{
+    display: flex;
+    justify-content: center;
+ 
+    width: 50vw
+}

@@ -19,10 +19,10 @@ const Footer = ({ isOpen }) => {
           <div className="footer-section">
             <h2>Services</h2>
             <ul className="footer-section-ul">
-              <li><a href="/tailormade">Tailor Made Experiences</a></li>
-              <li><a href="/Food">Food</a></li>
-              <li><a href="/Activities">Activities</a></li>
-              <li><a href="/Tours">Tours</a></li>
+              <li><a href="/posts/Tailormade">Tailor Made Experiences</a></li>
+              <li><a href="/posts/Food">Food</a></li>
+              <li><a href="/posts/Activities">Activities</a></li>
+              <li><a href="/posts/Tours">Tours</a></li>
             </ul>
           </div>
           <div className="footer-section">

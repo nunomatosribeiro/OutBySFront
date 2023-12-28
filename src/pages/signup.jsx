@@ -71,6 +71,7 @@ const Signup = () => {
       <div className="image-signupPage-container">
         <img src='./signupImage.jpg' />
       </div>
+      <div className="form-container-signup">
       <form onSubmit={handleSignup} style={formStyle}>
       <div className="label-container">
       <label htmlFor="username">Name</label>
@@ -125,6 +126,7 @@ const Signup = () => {
           Signup
         </button>
       </form>
+        </div>
         </div>
     )
 }
