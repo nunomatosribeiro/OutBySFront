@@ -13,8 +13,8 @@ const Footer = ({ isOpen }) => {
           <div className="footer-section">
             <h2>OutByS</h2>
             <ul className="footer-section-ul">
-              <li><a href="/aboutus">About Us</a></li>
-              <li><a href="/">Careers</a></li>
+              <li><Link to={"/aboutus"}>About Us</Link></li>
+              <li><Link to={"/"}>Careers</Link></li>
             </ul>
           </div>
           <div className="footer-section">
@@ -24,14 +24,15 @@ const Footer = ({ isOpen }) => {
               <li><Link to={`/posts/Food`}>Food</Link></li>
               <li><Link to={`/posts/Activities`}>Activities</Link></li>
               <li><Link to={`/posts/Tours`}>Tours</Link></li>
+              <li><Link to={`/createpost`}>Posts</Link></li>
             </ul>
           </div>
           <div className="footer-section">
             <h2>Connect with Us</h2>
             <div className="social-icons">
-              <a href="/" className='facebook-icon'><FaFacebook /></a>
-              <a href="/" className='twitter-icon'><FaTwitter /></a>
-              <a href="/" className='instagram-icon'><FaInstagram /></a>
+              <Link to={"/"} className='facebook-icon'><FaFacebook /></Link>
+              <Link to={"/"} className='twitter-icon'><FaTwitter /></Link>
+              <Link to={"/"} className='instagram-icon'><FaInstagram /></Link>
               <WhatsAppButton />
             </div>
           </div>
