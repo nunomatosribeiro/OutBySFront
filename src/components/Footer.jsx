@@ -2,6 +2,7 @@ import React from 'react';
 import { FaFacebook, FaTwitter, FaInstagram, FaHeart  } from 'react-icons/fa';
 import '../Footer.css'
 import WhatsAppButton from './WhatsApp';
+import { Link } from 'react-router-dom';
 const Footer = ({ isOpen }) => {
     return ( 
       <div>
@@ -19,10 +20,10 @@ const Footer = ({ isOpen }) => {
           <div className="footer-section">
             <h2>Services</h2>
             <ul className="footer-section-ul">
-              <li><a href="/posts/Tailormade">Tailor Made Experiences</a></li>
-              <li><a href="/posts/Food">Food</a></li>
-              <li><a href="/posts/Activities">Activities</a></li>
-              <li><a href="/posts/Tours">Tours</a></li>
+              <li><Link to={`/Tailormade`}>Tailor Made Experiences</Link></li>
+              <li><Link to={`/posts/Food`}>Food</Link></li>
+              <li><Link to={`/posts/Activities`}>Activities</Link></li>
+              <li><Link to={`/posts/Tours`}>Tours</Link></li>
             </ul>
           </div>
           <div className="footer-section">
