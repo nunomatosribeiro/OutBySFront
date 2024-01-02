@@ -11,9 +11,10 @@ const WhatsAppButton = () => {
   return (
     <div>
        
-      <button className='whatsapp-icon' onClick={openWhatsApp}>
-        <FaWhatsapp />
-        Chat on WhatsApp
+      <button style={{border:'none', backgroundColor: 'transparent'}} onClick={openWhatsApp}>
+   
+       <p className='whatsapp-icon'><FaWhatsapp /> Chat on WhatsApp</p>
+       
       </button>
       
     </div>

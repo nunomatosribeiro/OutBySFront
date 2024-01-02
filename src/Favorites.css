@@ -1,0 +1,34 @@
+.favorites-container{
+    margin-left: auto;
+    margin-right: auto;
+width: 90vw;
+height: 80vh;
+justify-content: center;
+text-align: center;
+}
+.favorites-container h2{
+  display: flex;
+    justify-content: center;
+    align-items: center;
+   padding: 30px;
+
+}
+.favorites-container hr{
+    width: 250px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .card-style{
+    min-width: 130px;
+    margin: 8px;
+    border-radius: 4px;
+    min-width: 10vw;
+  }
+
+  @media screen and (min-width: 500px) {
+    .card-style{
+      background-color: red;
+      margin: 8px;
+      border-radius: 4px;
+    }
+  }

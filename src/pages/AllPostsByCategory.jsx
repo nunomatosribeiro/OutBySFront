@@ -6,7 +6,7 @@ import CardDetails from '../components/CardDetails'
 import '../AllPostsByCategory.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
-const AllPostsByCategory = ({ isOpen }) => {
+const AllPostsByCategory = ({ isOpen, favoritesColor, handleAddToFavorites, favorites, handleUnlike }) => {
   const [posts, setPosts] = useState([])
  const { category } = useParams()
 
@@ -49,8 +49,8 @@ const AllPostsByCategory = ({ isOpen }) => {
 </section>
 
 <section id='tours-section02'>
-<h1>Check here your {category}</h1>
-    <CardDetails isOpen={isOpen} posts={posts} category={category} />
+<h1>Selected {category} for you</h1>
+    <CardDetails favoritesColor={favoritesColor} favorites={favorites} handleAddToFavorites={handleAddToFavorites} handleUnlike={handleUnlike} isOpen={isOpen} posts={posts} category={category} />
    </section>
     </div>
     

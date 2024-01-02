@@ -80,9 +80,10 @@ nav(`/posts/details/${postId}`);
         <input placeholder='Email' type="email" name="email" value={formData.email} onChange={handleChange} />
       
       <br />
-</form></div>
+</form>
+</div>
         <button onClick={handleButtonClick}>
-          Make it happen!
+          One click Reservation!
          {/* Make the magic happen button */}
          {/* Magic reservation button */}
         </button>

@@ -10,7 +10,7 @@ import { Card } from 'react-bootstrap';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShareIcon from '@mui/icons-material/Share';
 import Slider from 'react-slick';
-
+import '../Favorites.css'
 const Favorites = ({ isOpen, posts }) => {
   const [isLiked, setIsLiked] = useState(false);
   const [likesCount, setLikesCount] = useState(0)
@@ -20,9 +20,8 @@ const { postId } = useParams()
 const { userId } = useParams()
 const { user, isLoggedIn } = useContext(AuthContext);
   useEffect(() => {
-
-
-    fetchFavorites();
+    fetchFavorites()
+    console.log(favorites, 'VER AQUI A DATA DOS FAVORITES');
   }, []);
 
   const fetchFavorites = async () => {
@@ -34,24 +33,13 @@ const { user, isLoggedIn } = useContext(AuthContext);
           Authorization: `Bearer ${token}`,
         },
       });
-      const favorites = response.data.favorites; 
-      console.log(response.data, 'VER AQUI A DATA DO GET DOS FAVORITES')
-      if (favorites.length > 0) {
-        const favoritesDetailsResponse = await axios.get(`${apiBaseUrl}/posts/details`, {
-          // Pass favorite ObjectIds as query parameters
-          params: { favorites: favorites.join(',') },
-        });
+      console.log(response.data, 'RESPONSE');
   
-        const favoritePosts = favoritesDetailsResponse.data;
-        console.log('Favorite Posts:', favoritePosts);
+      const favoritesArray = response.data || [];
+      setFavorites(favoritesArray);
   
-        // Update state with the fetched favorite posts
-        setFavorites(favoritePosts);
-
-    } else {
-      console.log('No favorites yet!');
-      setFavorites([]);
-    }
+      console.log(favoritesArray, 'VER AQUI A DATA DO GET DOS FAVORITES');
+      
     } catch (error) {
       console.error("Error fetching likes count:", error);
     }
@@ -61,24 +49,34 @@ const { user, isLoggedIn } = useContext(AuthContext);
   };
 
 
-  const handleUnlike = async () => {
+  const handleUnlike = async (post) => {
     try {
+      console.log('Starting handleUnlike...');
       setIsLoading(true);
       const token = localStorage.getItem("authToken");
-
-      await axios.delete(`${apiBaseUrl}/posts/${postId}/favorites`, {
-        data: { postId },
+  
+      // Make the DELETE request
+      await axios.delete(`${apiBaseUrl}/favorites/${post._id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
+  
+      console.log('POSTID', post._id);
+      console.log('Post unliked successfully!');
       setIsLiked(false);
-      localStorage.removeItem(`like_${postId}`);
-      setLikesCount(likesCount - 1);
-      onLike && onLike(false);
+      localStorage.removeItem(`like_${post._id}`);
+  
+      // Optimistic UI Update
       setIsLoading(false);
     } catch (error) {
-      console.error("Error unliking post:", error);
+      // Rollback changes if the request fails
+      console.error('Error unliking post:', error);
+      console.log('Rolling back changes...');
+      setIsLiked(true);
+      localStorage.setItem(`like_${post._id}`, 'true');
+      setLikesCount(likesCount + 1);
+  
       setIsLoading(false);
     }
   };
@@ -119,67 +117,58 @@ const { user, isLoggedIn } = useContext(AuthContext);
 
   return (
     <div>
-      {favorites.length === 0 ? (
-        <p>No favorites yet!</p>
-      ) : (
-        <Slider {...settings1}>
-          {favorites.map((favorite, index) => (
-            <div className="image-text-slick-container" key={index}>
-              {/* Display details of the favorite post */}
-              <Card style={{ margin: '8px', borderRadius: '4px' }}>
-                <Link to={`/posts/details/${favorite._id}`}>
-                  <div className="image-text-slick-container2">
-                    <CardMedia
-                      component="img"
-                      src={`https://res.cloudinary.com/du6zxcbrm/image/upload/${String(
-                        favorite.allMedia[0]
-                      ).replace('image/', '')}`}
-                      alt={`Image ${favorite.title}`}
-                    />
-                  </div>
-                </Link>
-                <CardContent>
-                  <Link
-                    to={`/posts/details/${favorite._id}`}
-                    style={{
-                      listStyleType: 'none',
-                      textDecoration: 'none',
-                      color: 'black',
-                    }}
-                  >
-                    {favorite.title}
-                  </Link>
-                  <Typography variant="body2" color="text.secondary">
-                    {favorite.description}
-                  </Typography>
-                </CardContent>
-                <CardActions disableSpacing>
-                  <IconButton
-                    aria-label="RemoveFromFavorites"
-                    className="favorites"
-                    onClick={() => handleUnlike(favorite)}
-                    style={
-                      isLoggedIn
-                        ? {
-                            border: 'none',
-                            color: 'rgb(64, 105, 194)',
-                            backgroundColor: 'transparent',
-                          }
-                        : {
-                            border: 'none',
-                            color: 'inherit',
-                            backgroundColor: 'transparent',
-                          }
-                    }
-                  >
-                    <FavoriteIcon />
-                  </IconButton>
-                </CardActions>
-              </Card>
-            </div>
-          ))}
-        </Slider>
-      )}
+ <Slider {...settings1}>
+  {Array.isArray(favorites) ? 
+    favorites.map((favorite, index) => (
+      <div className="image-text-slick-container" key={`${favorite._id}`}>
+       <Card className='card-style' >
+<Link to={`/posts/details/${favorite._id}`}>
+  <div className="image-text-slick-container2">
+    <CardMedia
+      component="img"
+      src={`https://res.cloudinary.com/du6zxcbrm/image/upload/${String(
+        favorite.allMedia[0]
+      ).replace('image/', '')}`}
+      alt={`Image ${favorite.title}`}
+    />
+  </div>
+</Link>
+<CardContent>
+  <Link
+    to={`/posts/details/${favorite._id}`}
+    style={{
+      listStyleType: 'none',
+      textDecoration: 'none',
+      color: 'black',
+    }}
+  >
+    {favorite.title}
+  </Link>
+  <Typography variant="body2" color="text.secondary">
+    {favorite.description}
+  </Typography>
+</CardContent>
+<CardActions disableSpacing>
+  <IconButton
+    aria-label="RemoveFromFavorites"
+    className="favorites"
+    onClick={() => handleUnlike(favorite)}
+    style={{
+      border: 'none',
+      color: favorites[index] ? 'rgb(64, 105, 194)' : 'inherit',
+      backgroundColor: 'transparent',
+    }}
+  >
+    <FavoriteIcon />
+  </IconButton>
+</CardActions>
+</Card>
+      </div>
+    ))
+   : (
+    <p>No favorites yet!</p>
+  )}
+</Slider>
     </div>
   );
 }

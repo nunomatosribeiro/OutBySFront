@@ -1,5 +1,5 @@
 // components/ReviewPage.js
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import { apiBaseUrl } from '../config';
@@ -10,6 +10,7 @@ import StarRating from './StarRating';
 import "../StarRating.css"
 import '../Pagedetails.css'
 import Slider from 'react-slick';
+import { AuthContext } from '../context/Auth.context';
 
 const ReviewPage = ({ match }) => {
   const [reviews, setReviews] = useState([])
@@ -19,14 +20,21 @@ const ReviewPage = ({ match }) => {
   const [posts, setPosts] = useState(0)
   const [avg, setAvg] = useState(0)
   const { postId } = useParams();
+  const { user, isLoggedIn } = useContext(AuthContext);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
+      const token = localStorage.getItem("authToken");
       const reviewsData = await axios.post(`${apiBaseUrl}/posts/${postId}/reviews`, {
         rating: userRatings,
         comments,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
       });
       console.log('check here the REVIEWS', reviewsData)
       alert('Review submitted successfully!');
@@ -40,8 +48,12 @@ const ReviewPage = ({ match }) => {
    
     const fetchReviews = async () => {
       try {
-        
-        const response = await axios.get(`${apiBaseUrl}/posts/${postId}/reviews`);
+        const token = localStorage.getItem("authToken");
+        const response = await axios.get(`${apiBaseUrl}/posts/${postId}/reviews`,{
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
         const posts = response.data; 
 
         console.log('Check here the REVIEWS',posts);

@@ -180,10 +180,11 @@ height: auto;
   height: 55px;
   padding: 5px;
   margin: 3px;
+  background-color: rgb(242, 161, 41) ;
 }
 
 .magic-form button:hover {
-  background-color: rgb(213, 209, 209);
+  background-color: rgb(201, 135, 35);
 }
 /** Section 6 **/
 

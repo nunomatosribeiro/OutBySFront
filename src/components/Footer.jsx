@@ -33,6 +33,7 @@ const Footer = ({ isOpen }) => {
               <Link to={"/"} className='facebook-icon'><FaFacebook /></Link>
               <Link to={"/"} className='twitter-icon'><FaTwitter /></Link>
               <Link to={"/"} className='instagram-icon'><FaInstagram /></Link>
+              
               <WhatsAppButton />
             </div>
           </div>

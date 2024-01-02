@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 import { apiBaseUrl } from '../config';
 import Slider from "react-slick";
@@ -6,15 +6,20 @@ import { CardActions, CardContent, CardMedia, IconButton, Typography } from '@mu
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import '../SlickCarouselTours.css'
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import Grid from 'react-loading-icons/dist/esm/components/grid';
 import { Card } from 'react-bootstrap';
 import FavoriteIcon from '@mui/icons-material/Favorite';
+import { AuthContext } from '../context/Auth.context';
 
 function GridFood() {
     const [posts, setPosts] = useState([]);
     const [favorites, setFavorites] = useState(Array(posts.length).fill(false));
-
+    const [isLiked, setIsLiked] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
+    const [likesCount, setLikesCount] = useState(0)
+    const { postId } = useParams()
+    const { user, isLoggedIn } = useContext(AuthContext);
   useEffect(() => {
     fetchPosts();
   }, []);
@@ -39,29 +44,96 @@ function GridFood() {
       console.log('Error fetching posts by category', error);
     }
   };
-  const handleFavoriteClick = (index) => {
-    const newFavorites = [...favorites];
-    newFavorites[index] = !newFavorites[index];
-    setFavorites(newFavorites);
-    console.log(index)
+
+  const handleAddToFavorites = async (post, index) => {
+    try {
+      if (user && user._id) {
+        const token = localStorage.getItem("authToken");
+
+          // Update the UI immediately
+      setIsLiked(true);
+
+        const userData = await axios.post(
+          `${apiBaseUrl}/favorites/${user._id}`,
+          { postId: post._id },  // Ensure postId is included in the request body
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        
+        const currentFavorites = userData.data.favorites || [];
+        const isAlreadyInFavorites = currentFavorites.includes(post._id);
+   
+        if (!isAlreadyInFavorites) {
+          // If not in favorites, add it to the array
+          const updatedFavorites = [...currentFavorites, post._id];
+  
+          await axios.put(
+            `${apiBaseUrl}/users/${user._id}`, {
+            favorites: updatedFavorites,
+          });
+  
+          setIsLiked(true);
+          setFavorites(updatedFavorites);
+         
+        }
+      } else {
+        console.error('User or user._id is undefined.');
+      }
+    } catch (error) {
+      console.error('Error updating favorites:', error);
+    }
+  };
+  const handleUnlike = async (post) => {
+    try {
+      console.log('Starting handleUnlike...');
+      setIsLoading(true);
+      const token = localStorage.getItem("authToken");
+  
+      // Make the DELETE request
+      await axios.delete(`${apiBaseUrl}/favorites/${post._id}`, 
+       { 
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      console.log('POSTID', postId);
+      console.log('Post unliked successfully!');
+      setIsLiked(false);
+      localStorage.removeItem(`like_${post._id}`);
+  
+      // Optimistic UI Update
+      setIsLoading(false);
+    } catch (error) {
+      // Rollback changes if the request fails
+      console.error('Error unliking post:', error);
+      console.log('Rolling back changes...');
+      setIsLiked(false);
+      localStorage.setItem(`like_${post._id}`, 'true');
+      setLikesCount(likesCount + 1);
+  
+      setIsLoading(false);
+    }
   };
   const settings = {
     dots: false,
     infinite: true,
     speed: 500,
     slidesToShow: 5,
-    slidesToScroll: 1,
+    slidesToScroll: 5,
   };
 
   return (
     <div className='slick-carousel-tours-mainpage-container' >
       
-    <Grid >
+   
     <Slider {...settings}>
     {posts.map((post, index) => ( 
         <div className='image-text-slick-container' key={post.title} >
           <Card style={{margin: '5px', borderRadius: '5px'}}>
-           <Link to={`/posts/details/${posts._id}`}>
+          <Link to={`/posts/details/${post._id}`}>
             <div className='image-text-slick-container2' >
             <CardMedia 
             component="img" 
@@ -86,11 +158,23 @@ function GridFood() {
     </CardContent>
     <CardActions disableSpacing>
       <IconButton
-        aria-label="add to favorites"
-        component="Favorites" 
-            onClick={() => handleFavoriteClick(index)}
-            style={{ color: favorites[index] ? 'red' : 'inherit' }}
-        >{/* favorites={post.favorites} */}
+        aria-label="AddToFavorites"
+        className='favorites'
+        onClick={() => (isLiked ? handleUnlike(post) : handleAddToFavorites(post))}
+            style={
+              isLoggedIn
+                ? {
+                    border: 'none',
+                    color: favorites[index] ? 'rgb(64, 105, 194)' : 'inherit',
+                    backgroundColor: 'transparent',
+                  }
+                : {
+                    border: 'none',
+                    color: 'inherit',
+                    backgroundColor: 'transparent',
+                  } 
+            }
+        >
         <FavoriteIcon className='Favorites'/>
       </IconButton>
       </CardActions>
@@ -98,7 +182,7 @@ function GridFood() {
         </div>
      ))} 
     </Slider>
-    </Grid>
+   
 
     </div>
   )

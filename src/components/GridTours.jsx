@@ -7,30 +7,31 @@ import CardMedia from '@mui/material/CardMedia';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import '../SlickCarouselTours.css'
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { Card } from 'react-bootstrap';
 import Grid from '@mui/material/Grid';
 import { CardActions, CardContent, IconButton, Typography } from '@mui/material';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 
 function GridMainPage () {
+  const [isLiked, setIsLiked] = useState(false);
+  const [likesCount, setLikesCount] = useState(0)
   const [posts, setPosts] = useState([]);
   const [favorites, setFavorites] = useState([Array(posts.length).fill(false)]);
+  const [isLoading, setIsLoading] = useState(false);
+  const { postId } = useParams()
   const { user, isLoggedIn } = useContext(AuthContext);
   if (user) {
     console.log('check here the user id', user._id);
   } else {
     console.log('User is not available or not logged in.');
   }
+
   useEffect(() => {
     fetchPosts();
   }, []);
-useEffect(() => {
-    if (user) {
-      handleFavoritesClick(); // Trigger favorites update when the component mounts and user is available
-    }
-  }, [user]);
-  const fetchPosts = async () => {
+
+const fetchPosts = async () => {
     try {
       const response = await axios.get(`${apiBaseUrl}/posts/Tours`);
       const postsWithImageData = await Promise.all(
@@ -51,8 +52,15 @@ useEffect(() => {
       console.log('Error fetching posts by category', error);
     }
   };
+
+  useEffect(() => {
+    if (user) {
+      handleFavoritesClick(); // Trigger favorites update when the component mounts and user is available
+    }
+  }, [isLiked]);
   
-  const handleFavoritesClick = async () => {
+  
+   const handleFavoritesClick = async () => {
     try {
       const token = localStorage.getItem("authToken");
       const userData = await axios.post(`${apiBaseUrl}/favorites/${user._id}`, null, {
@@ -66,31 +74,43 @@ useEffect(() => {
     } catch (error) {
       console.error('Error updating favorites:', error);
     }
-  };
+  }; 
 
-  const handleAddToFavorites = async (post) => {
+  const handleAddToFavorites = async (post, index) => {
     try {
       if (user && user._id) {
         const token = localStorage.getItem("authToken");
-        const userData = await axios.post(`${apiBaseUrl}/favorites/${user._id}`, null, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
 
+          // Update the UI immediately
+      setIsLiked(true);
+
+        const userData = await axios.post(
+          `${apiBaseUrl}/favorites/${user._id}`,
+          { postId: post._id },  // Ensure postId is included in the request body
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        const newFavorites = [...favorites];
+        newFavorites[index] = !newFavorites[index];
+        setFavorites(newFavorites);
         const currentFavorites = userData.data.favorites || [];
         const isAlreadyInFavorites = currentFavorites.includes(post._id);
-
+   
         if (!isAlreadyInFavorites) {
           // If not in favorites, add it to the array
           const updatedFavorites = [...currentFavorites, post._id];
-
-          await axios.put(`${apiBaseUrl}/users/${user._id}`, { favorites: updatedFavorites });
-
-          alert('Post added to favorites!');
+  
+          await axios.put(
+            `${apiBaseUrl}/users/${user._id}`, {
+            favorites: updatedFavorites,
+          });
+  
+          setIsLiked(true);
           setFavorites(updatedFavorites);
-        } else {
-          alert('Post is already in favorites!');
+         
         }
       } else {
         console.error('User or user._id is undefined.');
@@ -99,7 +119,38 @@ useEffect(() => {
       console.error('Error updating favorites:', error);
     }
   };
-
+  
+  const handleUnlike = async (post) => {
+    try {
+      console.log('Starting handleUnlike...');
+      setIsLoading(true);
+      const token = localStorage.getItem("authToken");
+  
+      // Make the DELETE request
+      await axios.delete(`${apiBaseUrl}/favorites/${post._id}`, {
+        
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      console.log('POSTID', postId);
+      console.log('Post unliked successfully!');
+      setIsLiked(false);
+      localStorage.removeItem(`like_${post._id}`);
+  
+      // Optimistic UI Update
+      setIsLoading(false);
+    } catch (error) {
+      // Rollback changes if the request fails
+      console.error('Error unliking post:', error);
+      console.log('Rolling back changes...');
+      setIsLiked(false);
+      localStorage.setItem(`like_${postId}`, 'true');
+      setLikesCount(likesCount + 1);
+  
+      setIsLoading(false);
+    }
+  };
   
   const settings1 = {
     dots: false,
@@ -172,18 +223,24 @@ useEffect(() => {
         <IconButton
           aria-label="AddToFavorites"
           className='favorites'
-               onClick={() => handleAddToFavorites(post)} 
-              style={
-                isLoggedIn
-                  ? {
-                      border: 'none',
-                      color: favorites.includes(post._id) ? 'rgb(64, 105, 194)' : 'inherit',
-                      backgroundColor: 'transparent',
-                    }
-                  : {border: 'none', color: 'inherit', backgroundColor: 'transparent' } // Empty object for no styles when not logged in
-              }
+          onClick={() => (isLiked ? handleUnlike(post) : handleAddToFavorites(post))}
+          style={
+            isLoggedIn
+              ? {
+                  border: 'none',
+                  color: favorites[index] ? 'rgb(64, 105, 194)' : 'inherit',
+                  backgroundColor: 'transparent',
+                }
+              : {
+                  border: 'none',
+                  color: 'inherit',
+                  backgroundColor: 'transparent',
+                } // Empty object for no styles when not logged in
+          }
           >
+           
           <FavoriteIcon />
+        
         </IconButton>
         </CardActions>
             </Card>

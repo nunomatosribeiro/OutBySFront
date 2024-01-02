@@ -7,7 +7,8 @@ import FoodCarousel from "../components/Food-carousel";
  import GridMainPage from "../components/GridTours";
 import GridFood from "../components/GridFood"; 
 import FormTailormade from "../components/FormTailormade";
- 
+import WhatsAppButton from "../components/WhatsApp";
+
 const MainPage = ({ isOpen }) => {
  
 
@@ -34,7 +35,7 @@ return (
 <div className='tailormade-container2'>
 <img className='porto-imageTailormade' src='porto-image.jpg'/>
 <div className='text-container-tailormade-mainpage'>
-<h1>Tailor Made Experiences</h1>
+<h1>Done for you ! </h1>
 <p>First time visitor or a Portugal lover?
 With focus in Porto and nearby cities such as Douro Valley and the north of Portugal, we are pleased
 to help you with unique experiences, exceed your expectations, with
@@ -44,13 +45,16 @@ Let us in charge of your journey in Porto and have a magical experience.</p>
 Looking forward to hear from you and welcome to Porto!</p>
 
 <Link to={'/posts/Tailormade'}><button>Learn more</button></Link>
+<WhatsAppButton className='whatsapp-icon' />
 </div>
+
 </div>
+
 </section>
 
 <section className="transition-section">
       <div className="transition-section-container">
-      <h3>Take some time for yourself and let us plan your trip</h3>
+      <h3>Take some time to enjoy yourself and let us plan your trip</h3>
       <br/>
       <p>Free cancelation / Use Reserve Now & Pay Later / Private Concierge <br/></p>
       </div>

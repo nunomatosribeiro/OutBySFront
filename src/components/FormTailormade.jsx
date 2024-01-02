@@ -51,12 +51,25 @@ console.error(error);
        <form className='formTailormade-container-form' onSubmit={handleSubmit}>
       <label>
         Name:
-        <input type="text" name="name" value={formData.name} onChange={handleChange} />
+        <input type="text" 
+        name="name" 
+        value={formData.name} 
+        onChange={handleChange} 
+        required
+        title="Please enter your name here"
+        />
       </label>
       
       <label>
         Email:
-        <input type="email" name="email" value={formData.email} onChange={handleChange} required />
+        <input type="email" 
+        name="email" 
+        value={formData.email} 
+        onChange={handleChange} 
+        required
+        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+        title="Please enter a valid email address"
+     />
       </label>
       
         What are you looking to enjoy in Porto?
