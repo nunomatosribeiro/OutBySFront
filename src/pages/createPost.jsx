@@ -15,14 +15,14 @@ function CreatePostPage({ setImageData,imageData}) {
   const submitPost = async (postData) => {
     console.log('postData look herererererer:', postData); 
     try {
-/*       const token = localStorage.getItem("authToken");
- */
+     const token = localStorage.getItem("authToken");
+ 
       const postDataWithMedia = { ...postData, allMedia };
-       await axios.post(`${apiBaseUrl}/posts/createpost`, postDataWithMedia/* , {
+       await axios.post(`${apiBaseUrl}/posts/createpost`, postDataWithMedia , {
         headers: {
           Authorization: `Bearer ${token}`,
         },
-      } */);
+      } );
  window.location.reload();
    
      

@@ -22,12 +22,16 @@ return (
       <img src="/section01Image.jpg" alt="mainpage-intro-image" />
 <div className="hero-Text">
 <h1>Welcome to OutByS</h1>
-<p>Live the city as a local</p>
-<p>We are here to take care of the logistics, while you can enjoy the city!</p>
+<p>Travel effortless, plan ahead or know now, we've got you covered!{/* Live the city as a local */}</p>
+<p>Local experts, available 24/7!{/* We are here to take care of the logistics, while you can enjoy the city! */}</p>
+<p>No payment upfront, anxiety free!</p>
 </div>
 </div>
 <Tab />
 </section>
+
+
+     
 
   
  
@@ -36,16 +40,13 @@ return (
 <img className='porto-imageTailormade' src='porto-image.jpg'/>
 <div className='text-container-tailormade-mainpage'>
 <h1>Done for you ! </h1>
-<p>First time visitor or a Portugal lover?
-With focus in Porto and nearby cities such as Douro Valley and the north of Portugal, we are pleased
-to help you with unique experiences, exceed your expectations, with
-personal care anywhere and at any time !!
-Let us in charge of your journey in Porto and have a magical experience.</p>
+<h4>The ultimate travel companion at your fingertips</h4><WhatsAppButton className='whatsapp-icon' /> 
+
+<p>Our most personalized service! One click away...</p>
 <p>We are available 24 hours via WhatsApp and e-mail.
 Looking forward to hear from you and welcome to Porto!</p>
 
-<Link to={'/posts/Tailormade'}><button>Learn more</button></Link>
-<WhatsAppButton className='whatsapp-icon' />
+<Link to={'/Tailormade'}><button>Discover more</button></Link>
 </div>
 
 </div>
@@ -54,9 +55,9 @@ Looking forward to hear from you and welcome to Porto!</p>
 
 <section className="transition-section">
       <div className="transition-section-container">
-      <h3>Take some time to enjoy yourself and let us plan your trip</h3>
+      <h3>Enjoy your time, focus on the adventure, leave the planning for us.{/* Take some time to enjoy yourself and let us plan your trip */}</h3>
       <br/>
-      <p>Free cancelation / Use Reserve Now & Pay Later / Private Concierge <br/></p>
+      <p>Use Reserve Now & Pay Later / Free cancelation / Private Concierge <br/></p>
       </div>
 </section>
 
@@ -70,7 +71,7 @@ Looking forward to hear from you and welcome to Porto!</p>
 <h1>Eat like a local!</h1>
 <p>The rich gastronomy will make your mouth watering.<br/>
 Traditional cuisine or author, you will be pleased with the gastronomic choices!</p>
-<Link to={'/posts/Food'}><button>Learn more</button></Link>
+<Link to={'/posts/Food'}><button>Discover more</button></Link>
 </div>
 </div>
 <div className="foodCarousel-container">
@@ -90,7 +91,7 @@ Traditional cuisine or author, you will be pleased with the gastronomic choices!
 going for a boat ride along the river,<br />
 we`ve got something to make you feel happy!<br/>
 </p>
-<Link to={'/posts/Activities'}><button>Learn more</button></Link>
+<Link to={'/posts/Activities'}><button>Discover more</button></Link>
 </div>
 </div>
 </section>
@@ -98,11 +99,12 @@ we`ve got something to make you feel happy!<br/>
 <section  id='section05'>
 <div className='tours-container'>
  <div className='text-container-tours'>
-<h1>Unforgettable sights, stunning nature and striking monuments</h1>
+<h1>Tours at your fingertips</h1>
+<p><strong>Know now</strong> - Best crafted tours for you!</p>
 <p>Whether you feel like learning more about Porto, 
-going for a trip to the Douro Valley or to a nearby city<br/>
-you can count on us for a remarkable experience! </p>
-<Link to={'/posts/Tours'}><button>Learn more</button></Link>
+going for a trip to the Douro Valley or to a nearby city
+you can count on us for a remarkable experience!</p>
+<Link to={'/posts/Tours'}><button>Discover more</button></Link>
 </div>
 <div className="grid-tours-mainpage" >
 <GridMainPage />

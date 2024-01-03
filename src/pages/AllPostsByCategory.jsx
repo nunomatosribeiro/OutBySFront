@@ -16,8 +16,12 @@ const AllPostsByCategory = ({ isOpen, favoritesColor, handleAddToFavorites, favo
   
     const fetchPostsByCategory = async () => {
       try {
-      
-        const response = await axios.get(`${apiBaseUrl}/posts/${category}`)
+        const token = localStorage.getItem("authToken");
+        const response = await axios.get(`${apiBaseUrl}/posts/${category}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
         const postsWithImageData = await Promise.all(
           response.data.map(async (post) => {
             if (post.imageData && post.public_id) {

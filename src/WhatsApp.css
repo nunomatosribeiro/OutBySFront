@@ -14,3 +14,8 @@
     background-color: #0a0c0a; 
     color: white
   }
+  @media screen and (max-width: 323px) {
+    .whatsapp-icon{
+      width: 50px;
+    }
+  }

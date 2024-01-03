@@ -4,6 +4,7 @@
 }
 
 .slick-arrow.slick-prev {
+    left: 0px;
     background-color: transparent;
     z-index: 1;
     max-width:30px;
@@ -15,14 +16,17 @@
 
 .slick-arrow.slick-next {
     background-color: transparent;
-    max-width:30px;
+    max-width:20px;
+    right: 0px;
 }
 .slick-arrow.slick-next:hover {
     border-bottom: none;
 }
 .slick-arrow.slick-next::before {
     font-size: 30px;
+   
     color: grey;
+   
 }
 
 .slick-arrow.slick-prev::before {
@@ -30,7 +34,7 @@
     color: grey;
 }
 .image-text-slick-container {
-  
+  width: 0vw;
     overflow: hidden; 
 }
 .image-text-slick-container2 {
@@ -54,3 +58,6 @@
 .slick-track{
     width: 80vw;
 }
+
+  
+  

@@ -29,7 +29,14 @@ export default function PageDetails({ isOpen }) {
   }, [])
 const fetchPostData = async () => {
 try {
-    const response = await axios.get(`${apiBaseUrl}/posts/details/${postId}`)
+    const token = localStorage.getItem("authToken");
+
+      
+    const response = await axios.get(`${apiBaseUrl}/posts/details/${postId}`, {
+        headers: {
+        Authorization: `Bearer ${token}`,
+      }
+    })
     const post = response.data;
     console.log('Ver aqui info dos detalhes do post', post);
     setPosts(post);

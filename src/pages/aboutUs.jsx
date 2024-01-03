@@ -60,7 +60,7 @@ export default function AboutUs({ isOpen }) {
 </section>
 <section>
   <h1>Our mission</h1>
-  <p>Welcome to OutByS</p>
+  <p><strong>Welcome to OutByS</strong></p>
 <p>We're a team of passionate travel enthusiasts who believe that 
 everyone deserves to experience the beauty and culture of this stunning city. 
 Our mission is to make it easy for visitors to discover and book the best tours and activities in Porto, 
@@ -72,9 +72,20 @@ delicious food and wine, our curated collection of tours has something for
 everyone.
 Our team is committed to providing exceptional customer service and ensuring
 that our users have a seamless and enjoyable experience. So whether you're
-a seasoned traveler or a first-time visitor, we invite you to discover 
+a seasonal traveler or a first-time visitor, we invite you to discover 
 the magic of Porto with us!</p>
-<h1>Our team</h1>
+<h4>Why choose OutByS?</h4>
+
+<p><strong>Flexibility</strong>: No payment upfront, free cancelation and many plans that will meet your expectations and budget.</p>
+<p><strong>Quality</strong>: Our experiences, done by locals with many years of experiences, will assure high quality service.
+So you know you are getting the best deal!</p>
+<p><strong>No language barriers</strong>: Book your experiences in your native language.</p>
+<p><strong>Remarkable Experiences</strong>: Contact one of our private concierges for free and 
+let them plan your next amazing adventure.</p>
+<p><strong>Fair-play</strong>: Have a last minute call? Do not worry. We’re available 24/7.</p>
+<h1>The faces that make the magic happen</h1>
+<p></p>
+<h5>Enough about us. We are looking forward to hearing from you!</h5>
 </section>
 </div>
   )

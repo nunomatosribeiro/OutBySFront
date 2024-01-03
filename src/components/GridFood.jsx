@@ -26,6 +26,7 @@ function GridFood() {
 
   const fetchPosts = async () => {
     try {
+      
       const response = await axios.get(`${apiBaseUrl}/posts/Food`);
       const postsWithImageData = await Promise.all(
         response.data.map(async (post) => {
@@ -122,8 +123,36 @@ function GridFood() {
     infinite: true,
     speed: 500,
     slidesToShow: 5,
-    slidesToScroll: 5,
+    slidesToScroll: 1,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 4,
+          slidesToScroll: 1,
+          
+        
+        },
+      },
+      {
+        breakpoint: 768,
+       
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 1,
+          
+        },
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+    ],
   };
+ 
 
   return (
     <div className='slick-carousel-tours-mainpage-container' >
@@ -132,7 +161,7 @@ function GridFood() {
     <Slider {...settings}>
     {posts.map((post, index) => ( 
         <div className='image-text-slick-container' key={post.title} >
-          <Card style={{margin: '5px', borderRadius: '5px'}}>
+          <Card style={{margin: '8px', borderRadius: '4px'}}>
           <Link to={`/posts/details/${post._id}`}>
             <div className='image-text-slick-container2' >
             <CardMedia 

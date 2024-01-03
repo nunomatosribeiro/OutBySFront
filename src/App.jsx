@@ -185,6 +185,7 @@ const handleUnlike = async (post) => {
         <Route path='/Activities' element={<ActivitiesPage handleUnlike={handleUnlike} isOpen={isModalOpen} />} />
         <Route path='/Tours' element={<ToursPage handleAddToFavorites={handleAddToFavorites} handleUnlike={handleUnlike} isOpen={isModalOpen} />} />
         <Route path='/favorites/:userId' element={<FavoritesPage posts={posts} handleAddToFavorites={handleAddToFavorites} handleUnlike={handleUnlike} isOpen={isModalOpen} />} />
+        
         <Route path='/createpost' element={<CreatePostPage imageData={imageData} setImageData={setImageData} />} />
         <Route path='/general-terms-and-conditions' element={<TermsAndConditions />} />
       </Routes>

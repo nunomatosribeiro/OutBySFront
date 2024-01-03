@@ -11,10 +11,18 @@ function TailorMade ({isOpen}) {
     
     <img src='porto-activities.jpg' alt='' />
   <div className='text-section1-container'>
-  <h1>Let us in charge of your journey in Porto and have a magical experience.</h1>
-<h5>Crafting unique experiences</h5>
-<p>Porto is a city full of personality and creative people.<br/>
-Get ready to fall in love and leave with the desire to return.</p>
+<h4>Crafting unique experiences for free</h4>
+<h6>Enjoy your time, do not worry!</h6>
+<h6>Plan ahead and simple! <br/>
+We take care of everything!</h6>
+<p>
+First time visitor or a Portugal lover? With focus in Porto 
+and nearby cities such as 
+Douro Valley and 
+the north of Portugal, we are pleased to help you with unique 
+experiences, exceed your expectations, with personal care 
+anywhere and at any time !!
+</p>
 </div>
 </div>
 </section>
@@ -22,7 +30,6 @@ Get ready to fall in love and leave with the desire to return.</p>
 <section className='section2-tailormade-page'>   
 <div className='container-section2-images'>
 <div className='whatsapp-container'>
-<img className='container-section2-images-img' src='background-photo2.jpg' alt='tailormade-image' style={{width:'450px', padding: '30px'}} />
 <div className='whatsapp-text-container'>
 <p>Talk with us via WhatsApp</p>
  <WhatsAppButton /> 
@@ -30,7 +37,6 @@ Get ready to fall in love and leave with the desire to return.</p>
 </div>
 <div className='whatsapp-container'>
 
-<img className='container-section2-images-img' src='tailormade-page-image-yellow.jpg' alt='tailormade-image' style={{width:'450px', minHeight: '325px', padding: '30px'}} />
 <div className='tailormade-form-container'>
 
 <p>Or Fill Our Form</p>
