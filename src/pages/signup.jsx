@@ -36,7 +36,7 @@ const Signup = () => {
       console.log("here is the signup response", res.data);
       nav("/");
     } catch (error) {
-      console.error(error);
+      console.error("Signup Error:", error.response?.data, error);
     }
   };
 
