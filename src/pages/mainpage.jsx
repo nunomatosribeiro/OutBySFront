@@ -24,7 +24,7 @@ return (
 <h1>Welcome to OutByS</h1>
 <p>Travel effortless, plan ahead or know now, we've got you covered!{/* Live the city as a local */}</p>
 <p>Local experts, available 24/7!{/* We are here to take care of the logistics, while you can enjoy the city! */}</p>
-<p>No payment upfront, anxiety free!</p>
+<p>No payment upfront, worry free!</p>
 </div>
 </div>
 <Tab />
