@@ -8,7 +8,7 @@ const AuthContextWrapper = ({ children }) => {
   const [user, setUser] = useState(null)
   const [isLoading, setIsLoading] = useState(true)
   const [isLoggedIn, setIsLoggedIn] = useState(false)
-
+  const [isAdmin, setAdmin] = useState(false)
   const authenticateUser = async () => {
     const tokenInStorage = localStorage.getItem('authToken')
     if (tokenInStorage) {
@@ -18,9 +18,14 @@ const AuthContextWrapper = ({ children }) => {
         })
         console.log('from the context, here is the verify response', data)
         const user = data
+        const isAdmin = user.email === 'outbysporto@gmail.com';
         setUser(user)
         setIsLoading(false)
         setIsLoggedIn(true)
+        setAdmin(isAdmin);
+      /*   if(user.email === "outbysporto@gmail.com"){
+          return isAdmin
+        } */
       } catch (err) {
         console.log('error on the authenticate user function', err)
         setUser(null)
@@ -62,6 +67,7 @@ const AuthContextWrapper = ({ children }) => {
         isLoggedIn,
         logOutUser,
         updateUser,
+        isAdmin
       }}
     >
       {children}

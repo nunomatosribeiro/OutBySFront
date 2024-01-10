@@ -1,9 +1,11 @@
-import React from 'react';
+import { useContext } from 'react';
 import { FaFacebook, FaTwitter, FaInstagram, FaHeart  } from 'react-icons/fa';
 import '../Footer.css'
 import WhatsAppButton from './WhatsApp';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../context/Auth.context';
 const Footer = ({ isOpen }) => {
+  const { isAdmin } = useContext(AuthContext)
     return ( 
       <div>
        {isOpen ? '' : (
@@ -24,7 +26,7 @@ const Footer = ({ isOpen }) => {
               <li><Link to={`/posts/Food`}>Food</Link></li>
               <li><Link to={`/posts/Activities`}>Activities</Link></li>
               <li><Link to={`/posts/Tours`}>Tours</Link></li>
-              <li><Link to={`/createpost`}>Posts</Link></li>
+              {isAdmin ? <li><Link to={`/createpost`}>Posts</Link></li> : ''}
             </ul>
           </div>
           <div className="footer-section">

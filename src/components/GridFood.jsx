@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 import { apiBaseUrl } from '../config';
 import Slider from "react-slick";
@@ -7,7 +7,6 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import '../SlickCarouselTours.css'
 import { Link, useParams } from 'react-router-dom';
-import Grid from 'react-loading-icons/dist/esm/components/grid';
 import { Card } from 'react-bootstrap';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import { AuthContext } from '../context/Auth.context';
@@ -15,11 +14,15 @@ import { AuthContext } from '../context/Auth.context';
 function GridFood() {
     const [posts, setPosts] = useState([]);
     const [favorites, setFavorites] = useState(Array(posts.length).fill(false));
-    const [isLiked, setIsLiked] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
     const [likesCount, setLikesCount] = useState(0)
     const { postId } = useParams()
     const { user, isLoggedIn } = useContext(AuthContext);
+
+    // Load liked status from local storage on component mount
+  const initialLikedState = JSON.parse(localStorage.getItem('likedPosts')) || {};
+  const [isLiked, setIsLiked] = useState(initialLikedState);
+
   useEffect(() => {
     fetchPosts();
   }, []);
@@ -49,39 +52,24 @@ function GridFood() {
   const handleAddToFavorites = async (post, index) => {
     try {
       if (user && user._id) {
-        const token = localStorage.getItem("authToken");
+        const token = localStorage.getItem('authToken');
 
-          // Update the UI immediately
-      setIsLiked(true);
-
-        const userData = await axios.post(
+        await axios.post(
           `${apiBaseUrl}/favorites/${user._id}`,
-          { postId: post._id },  // Ensure postId is included in the request body
+          { postId: post._id },
           {
             headers: {
               Authorization: `Bearer ${token}`,
             },
           }
         );
-        
-        const currentFavorites = userData.data.favorites || [];
-        const isAlreadyInFavorites = currentFavorites.includes(post._id);
-   
-        if (!isAlreadyInFavorites) {
-          // If not in favorites, add it to the array
-          const updatedFavorites = [...currentFavorites, post._id];
-  
-          await axios.put(
-            `${apiBaseUrl}/users/${user._id}`, {
-            favorites: updatedFavorites,
-          });
-  
-          setIsLiked(true);
-          setFavorites(updatedFavorites);
-         
-        }
-      } else {
-        console.error('User or user._id is undefined.');
+
+        // Update local storage and state
+        const updatedLikes = { ...isLiked, [post._id]: true };
+        localStorage.setItem('likedPosts', JSON.stringify(updatedLikes));
+        setIsLiked(updatedLikes);
+
+        setLikesCount((prevCount) => prevCount + 1);
       }
     } catch (error) {
       console.error('Error updating favorites:', error);
@@ -89,33 +77,22 @@ function GridFood() {
   };
   const handleUnlike = async (post) => {
     try {
-      console.log('Starting handleUnlike...');
-      setIsLoading(true);
-      const token = localStorage.getItem("authToken");
+      const token = localStorage.getItem('authToken');
   
-      // Make the DELETE request
-      await axios.delete(`${apiBaseUrl}/favorites/${post._id}`, 
-       { 
+      await axios.delete(`${apiBaseUrl}/favorites/${post._id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
-      console.log('POSTID', postId);
-      console.log('Post unliked successfully!');
-      setIsLiked(false);
-      localStorage.removeItem(`like_${post._id}`);
   
-      // Optimistic UI Update
-      setIsLoading(false);
+      // Update local storage and state
+      const updatedLikes = { ...isLiked, [post._id]: false };
+      localStorage.setItem('likedPosts', JSON.stringify(updatedLikes));
+      setIsLiked(updatedLikes);
+  
+      setLikesCount((prevCount) => Math.max(prevCount - 1, 0));
     } catch (error) {
-      // Rollback changes if the request fails
       console.error('Error unliking post:', error);
-      console.log('Rolling back changes...');
-      setIsLiked(false);
-      localStorage.setItem(`like_${post._id}`, 'true');
-      setLikesCount(likesCount + 1);
-  
-      setIsLoading(false);
     }
   };
   const settings = {
@@ -189,12 +166,11 @@ function GridFood() {
       <IconButton
         aria-label="AddToFavorites"
         className='favorites'
-        onClick={() => (isLiked ? handleUnlike(post) : handleAddToFavorites(post))}
-            style={
+        onClick={() => (isLiked[post._id] ? handleUnlike(post) : handleAddToFavorites(post, index))}            style={
               isLoggedIn
                 ? {
                     border: 'none',
-                    color: favorites[index] ? 'rgb(64, 105, 194)' : 'inherit',
+                    color: isLiked[post._id] ? 'rgb(64, 105, 194)' : 'inherit',
                     backgroundColor: 'transparent',
                   }
                 : {
@@ -211,8 +187,6 @@ function GridFood() {
         </div>
      ))} 
     </Slider>
-   
-
     </div>
   )
 }

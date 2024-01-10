@@ -11,19 +11,18 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShareIcon from '@mui/icons-material/Share';
 import Slider from 'react-slick';
 import '../Favorites.css'
-const Favorites = ({ isOpen, posts }) => {
+const Favorites = () => {
   const [isLiked, setIsLiked] = useState(false);
   const [likesCount, setLikesCount] = useState(0)
   const [isLoading, setIsLoading] = useState(false);
   const [favorites, setFavorites] = useState([])
-const { postId } = useParams()
 const { userId } = useParams()
-const { user, isLoggedIn } = useContext(AuthContext);
-  useEffect(() => {
+const { isLoggedIn } = useContext(AuthContext);
+ 
+ useEffect(() => {
     fetchFavorites()
     console.log(favorites, 'VER AQUI A DATA DOS FAVORITES');
-  }, []);
-
+  }, [userId]);
   const fetchFavorites = async () => {
     try {
       const token = localStorage.getItem("authToken");
@@ -44,6 +43,7 @@ const { user, isLoggedIn } = useContext(AuthContext);
       console.error("Error fetching likes count:", error);
     }
   };
+ 
   const onLike = (liked) => {
     setLikesCount(liked ? likesCount + 1 : likesCount - 1);
   };
@@ -64,7 +64,14 @@ const { user, isLoggedIn } = useContext(AuthContext);
   
       console.log('POSTID', post._id);
       console.log('Post unliked successfully!');
-      setIsLiked(false);
+      
+      // Update the isLiked state in GridMainPage
+      setIsLiked((prevIsLiked) => {
+        const updatedLikes = { ...prevIsLiked };
+        updatedLikes[post._id] = false;
+        return updatedLikes;
+      });
+  
       localStorage.removeItem(`like_${post._id}`);
   
       // Optimistic UI Update
@@ -73,7 +80,11 @@ const { user, isLoggedIn } = useContext(AuthContext);
       // Rollback changes if the request fails
       console.error('Error unliking post:', error);
       console.log('Rolling back changes...');
-      setIsLiked(true);
+      setIsLiked((prevIsLiked) => {
+        const updatedLikes = { ...prevIsLiked };
+        updatedLikes[post._id] = true;
+        return updatedLikes;
+      });
       localStorage.setItem(`like_${post._id}`, 'true');
       setLikesCount(likesCount + 1);
   

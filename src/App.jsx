@@ -26,7 +26,6 @@ import { apiBaseUrl } from './config';
 import { AuthContext } from './context/Auth.context';
 
 function App() {
-  const [showModal, setShowModal] = useState(false) //Apagar
   const [isLiked, setIsLiked] = useState(false);
   const [likesCount, setLikesCount] = useState(0)
   const [isLoading, setIsLoading] = useState(false);
@@ -65,6 +64,24 @@ function App() {
         console.log('Error fetching posts by category', error)
       }
     }
+    const handleDeletePost = async () => {
+      try {
+        const tokenInStorage = localStorage.getItem("authToken");
+        setIsLoading(true);
+        await axios.delete(`${apiBaseUrl}/users/`, {
+          headers: {
+            Authorization: `Bearer ${tokenInStorage}`,
+          },
+        });
+        setIsLoading(false);
+       
+      
+      } catch (error) {
+        console.error("Error deleting profile:", error);
+        setIsLoading(false);
+      }
+    };
+
 const openModal = () => {
   setIsModalOpen(true)
 }
@@ -94,7 +111,7 @@ setIsModalOpen(false)
   }
 };  */
 
-const handleAddToFavorites = async (post) => {
+/* const handleAddToFavorites = async (post) => {
   try {
     if (user && user._id) {
       const token = localStorage.getItem("authToken");
@@ -134,7 +151,7 @@ const handleAddToFavorites = async (post) => {
   } catch (error) {
     console.error('Error updating favorites:', error);
   }
-};
+}; */
 const handleUnlike = async (post) => {
   try {
     console.log('Starting handleUnlike...');
@@ -171,20 +188,20 @@ const handleUnlike = async (post) => {
        <Navbar openModal={openModal} />
       <Modal isOpen={isModalOpen} onClose={closeModal} />
       <Routes>
-        <Route path='/' element={<MainPage handleAddToFavorites={handleAddToFavorites} handleUnlike={handleUnlike} isOpen={isModalOpen} openModal={openModal}  />} />
+        <Route path='/' element={<MainPage isLiked={isLiked} /* handleAddToFavorites={handleAddToFavorites} */ handleUnlike={handleUnlike} isOpen={isModalOpen} openModal={openModal}  />} />
         <Route path='/Login' element={<Login />} />
         <Route path='/Signup' element={<Signup />} />
-        <Route path='/posts/:category' element={<AllPostsByCategory favoritesColor={favoritesColor} favorites={favorites} handleAddToFavorites={handleAddToFavorites} handleUnlike={handleUnlike} isOpen={isModalOpen} />} />
+        <Route path='/posts/:category' element={<AllPostsByCategory favoritesColor={favoritesColor} favorites={favorites} /* handleAddToFavorites={handleAddToFavorites}*/ handleUnlike={handleUnlike} isOpen={isModalOpen} />} /> 
         {/* <Route path='/users/:userId' element={<ReserveNow  />} /> */}
         <Route path='/posts/details/:postId' element={<PageDetails isOpen={isModalOpen}  />} />
         <Route path='/aboutus' element={<AboutUs isOpen={isModalOpen} />} />
         <Route path="/:postId/review" element={Reviews} />
         <Route path='/profile/:userId' element={<Profile />} />
-        <Route path='/Tailormade' element={<TailorMade handleAddToFavorites={handleAddToFavorites} handleUnlike={handleUnlike}  isOpen={isModalOpen} />} />
-        <Route path='/Food' element={<FoodPage handleAddToFavorites={handleAddToFavorites} handleUnlike={handleUnlike} isOpen={isModalOpen} />} />
+        <Route path='/Tailormade' element={<TailorMade /* handleAddToFavorites={handleAddToFavorites} */  handleUnlike={handleUnlike}  isOpen={isModalOpen} />} />
+        <Route path='/Food' element={<FoodPage /* handleAddToFavorites={handleAddToFavorites} */ handleUnlike={handleUnlike} isOpen={isModalOpen} />} />
         <Route path='/Activities' element={<ActivitiesPage handleUnlike={handleUnlike} isOpen={isModalOpen} />} />
-        <Route path='/Tours' element={<ToursPage handleAddToFavorites={handleAddToFavorites} handleUnlike={handleUnlike} isOpen={isModalOpen} />} />
-        <Route path='/favorites/:userId' element={<FavoritesPage posts={posts} handleAddToFavorites={handleAddToFavorites} handleUnlike={handleUnlike} isOpen={isModalOpen} />} />
+        <Route path='/Tours' element={<ToursPage /* handleAddToFavorites={handleAddToFavorites} */ handleUnlike={handleUnlike} isOpen={isModalOpen} />} />
+        <Route path='/favorites/:userId' element={<FavoritesPage openModal={openModal} /* handleAddToFavorites={handleAddToFavorites} */ handleUnlike={handleUnlike} isOpen={isModalOpen} />} />
         
         <Route path='/createpost' element={<CreatePostPage imageData={imageData} setImageData={setImageData} />} />
         <Route path='/general-terms-and-conditions' element={<TermsAndConditions />} />

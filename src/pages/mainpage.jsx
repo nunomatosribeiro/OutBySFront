@@ -9,7 +9,7 @@ import GridFood from "../components/GridFood";
 import FormTailormade from "../components/FormTailormade";
 import WhatsAppButton from "../components/WhatsApp";
 
-const MainPage = ({ isOpen }) => {
+const MainPage = ({ isOpen, isLiked, openModal }) => {
  
 
 
@@ -107,7 +107,7 @@ you can count on us for a remarkable experience!</p>
 <Link to={'/posts/Tours'}><button>Discover more</button></Link>
 </div>
 <div className="grid-tours-mainpage" >
-<GridMainPage />
+<GridMainPage isLiked={isLiked} openModal={openModal}  />
 </div>
   
 

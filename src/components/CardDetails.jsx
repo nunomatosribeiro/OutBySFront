@@ -23,10 +23,10 @@ import axios from 'axios';
 import { apiBaseUrl } from '../config';
 import { AuthContext } from "../context/Auth.context";
 
-const CardDetails = ({ posts, favoritesColor, favorites, handleAddToFavorites, handleUnlike, isOpen }) => {
+const CardDetails = ({ posts, favoritesColor, favorites, handleAddToFavorites, handleUnlike, isOpen, isLiked }) => {
     const [expanded, setExpanded] = React.useState(false);
 const [isClicked, setIsClicked] = useState(false);
-const [isLiked, setIsLiked] = useState(false);
+
 
 const { user, isLoggedIn } = useContext(AuthContext);
 console.log(user)
@@ -97,18 +97,28 @@ const ExpandMore = styled((props) => {
         <IconButton /* aria-label="add to favorites"
           onClick={() => setIsClicked(!isClicked)}
           style={{ color: isClicked ? 'red' : 'inherit' }} */
-          aria-label="add to favorites"
-          onClick={() => (isLiked ? handleUnlike(post) : handleAddToFavorites(post))}
+          aria-label="AddToFavorites"
+          className='favorites'
+          onClick={() => (isLoggedIn ? (isLiked[post._id] ? handleUnlike(post) : handleAddToFavorites(post, index)) : openModal)}
           style={
             isLoggedIn
               ? {
                   border: 'none',
-                  color: favoritesColor[post._id] ? 'rgb(64, 105, 194)' : 'inherit', 
+                  color: isLiked[post._id] ? 'rgb(64, 105, 194)' : 'inherit',
                   backgroundColor: 'transparent',
                 }
-              : {border: 'none', color: 'inherit', backgroundColor: 'transparent' } // Empty object for no styles when not logged in
-          }
-          >{/* favorites={post.favorites} */}
+              : {
+                  border: 'none',
+                  color: 'inherit',
+                  backgroundColor: 'transparent',
+                }
+          }   
+         
+         
+          
+          
+        >
+        {/* favorites={post.favorites} */}
           <FavoriteIcon />
           
        

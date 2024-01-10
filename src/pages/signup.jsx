@@ -18,24 +18,33 @@ const Signup = () => {
 
   const handleSignup = async (e) => {
     e.preventDefault();
-
+  
     try {
+      const token = localStorage.getItem("authToken");
       const res = await axios.post(
         `${apiBaseUrl}/auth/signup`,
-
-        { name, email, password, image }
+        { name, email, password, image },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json', // Set the content type as needed
+            // Add any other headers if required
+          },
+        }
       );
-      {
-        setName("");
-       
-        setEmail("");
-        setPassword("");
-        /* setImage(""); */
-      }
-
-      console.log("here is the signup response", res.data);
+  
+      setName("");
+      setEmail("");
+      setPassword("");
+      // setImage(""); 
+  
+      console.log("Here is the signup response", res.data);
       nav("/");
     } catch (error) {
+      console.error("Signup Error:", error.response?.data, error.response?.status, error.response?.headers);
+
+      // Add the following line to log the entire error.response object
+      console.log("Full error response:", error.response);
       console.error("Signup Error:", error.response?.data, error);
     }
   };
